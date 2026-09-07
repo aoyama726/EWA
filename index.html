@@ -2,15 +2,29 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#111827">
-<meta name="apple-mobile-web-app-capable" content="yes">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,viewport-fit=cover"
+>
+
+<meta
+  name="theme-color"
+  content="#111827"
+>
+
+<meta
+  name="apple-mobile-web-app-capable"
+  content="yes"
+>
+
 <title>My English Words</title>
 
 <style>
+
 :root{
   --bg:#f5f7fb;
-  --card:#fff;
+  --card:#ffffff;
   --text:#111827;
   --muted:#6b7280;
   --line:#e5e7eb;
@@ -18,249 +32,384 @@
   --blue:#2563eb;
   --red:#dc2626;
   --green:#15803d;
+  --purple:#3730a3;
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
   background:var(--bg);
+
   color:var(--text);
 }
 
 header{
   position:sticky;
+
   top:0;
+
   z-index:10;
-  background:rgba(245,247,251,.96);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--line);
-  padding:18px 16px;
+
+  background:
+    rgba(245,247,251,.96);
+
+  backdrop-filter:
+    blur(12px);
+
+  border-bottom:
+    1px solid var(--line);
+
+  padding:
+    18px 16px;
 }
 
 header h1{
   margin:0;
+
   font-size:22px;
 }
 
 main{
   max-width:760px;
+
   margin:auto;
-  padding:16px 16px 100px;
+
+  padding:
+    16px 16px 100px;
 }
 
 .tabs{
   display:grid;
-  grid-template-columns:1fr 1fr;
+
+  grid-template-columns:
+    1fr 1fr;
+
   gap:10px;
+
   margin-bottom:18px;
 }
 
 button{
   border:0;
+
   border-radius:14px;
-  padding:13px 14px;
+
+  padding:
+    13px 14px;
+
   font-size:16px;
+
   font-weight:750;
+
   background:#e5e7eb;
+
   color:#111827;
 }
 
 .tab{
   min-height:60px;
+
   font-size:18px;
 }
 
 .tab.active,
 button.primary{
-  background:var(--primary);
+  background:
+    var(--primary);
+
   color:white;
 }
 
 button.blue{
-  background:var(--blue);
+  background:
+    var(--blue);
+
   color:white;
 }
 
 button.danger{
   background:#fee2e2;
+
   color:var(--red);
 }
 
 button.correct{
   background:#dcfce7;
+
   color:var(--green);
 }
 
 .card{
-  background:var(--card);
-  border:1px solid var(--line);
+  background:
+    var(--card);
+
+  border:
+    1px solid var(--line);
+
   border-radius:20px;
+
   padding:18px;
+
   margin-bottom:14px;
-  box-shadow:0 2px 8px rgba(0,0,0,.03);
+
+  box-shadow:
+    0 2px 8px
+    rgba(0,0,0,.03);
 }
 
 .section-title{
   font-size:22px;
+
   font-weight:850;
+
   margin-bottom:6px;
 }
 
 label{
   display:block;
+
   font-weight:800;
+
   font-size:15px;
-  margin:18px 0 8px;
+
+  margin:
+    18px 0 8px;
 }
 
 input,
 textarea,
 select{
   width:100%;
-  padding:13px 14px;
-  border:1px solid #d1d5db;
+
+  padding:
+    13px 14px;
+
+  border:
+    1px solid #d1d5db;
+
   border-radius:13px;
+
   background:white;
+
   color:#111827;
+
   font-size:17px;
+
   font-family:inherit;
 }
 
 textarea{
   min-height:100px;
+
   resize:vertical;
 }
 
 .row{
   display:flex;
+
   gap:10px;
+
   align-items:center;
+
   flex-wrap:wrap;
 }
 
 .space{
   display:flex;
-  justify-content:space-between;
+
+  justify-content:
+    space-between;
+
   gap:12px;
+
   align-items:flex-start;
 }
 
 .grid2{
   display:grid;
-  grid-template-columns:1fr 1fr;
+
+  grid-template-columns:
+    1fr 1fr;
+
   gap:10px;
 }
 
 .word{
   font-size:29px;
+
   font-weight:850;
-  word-break:break-word;
+
+  word-break:
+    break-word;
 }
 
 .meaning{
   font-size:18px;
+
   margin-top:6px;
-  white-space:pre-wrap;
+
+  white-space:
+    pre-wrap;
 }
 
 .small{
   font-size:16px;
+
   line-height:1.6;
-  white-space:pre-wrap;
+
+  white-space:
+    pre-wrap;
 }
 
 .muted{
-  color:var(--muted);
+  color:
+    var(--muted);
+
   font-size:14px;
+
   line-height:1.5;
 }
 
 .pill{
   display:inline-block;
+
   background:#eef2ff;
-  color:#3730a3;
-  padding:5px 9px;
+
+  color:var(--purple);
+
+  padding:
+    5px 9px;
+
   border-radius:999px;
+
   font-size:13px;
+
   font-weight:800;
 }
 
 .hidden{
-  display:none!important;
+  display:none !important;
 }
 
 .stats{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+
+  grid-template-columns:
+    repeat(3,1fr);
+
   gap:8px;
+
   margin-top:16px;
 }
 
 .stat{
   background:#f9fafb;
+
   border-radius:14px;
-  padding:14px 8px;
+
+  padding:
+    14px 8px;
+
   text-align:center;
 }
 
 .stat strong{
   display:block;
+
   font-size:21px;
 }
 
 .empty{
   text-align:center;
-  color:var(--muted);
-  padding:40px 12px;
+
+  color:
+    var(--muted);
+
+  padding:
+    40px 12px;
+
   font-size:17px;
 }
 
 .quizPrompt{
   font-size:32px;
+
   font-weight:850;
+
   text-align:center;
-  margin:26px 0;
-  white-space:pre-wrap;
+
+  margin:
+    26px 0;
+
+  white-space:
+    pre-wrap;
+
+  word-break:
+    break-word;
 }
 
 .choices{
   display:grid;
+
   gap:12px;
+
   margin-top:18px;
 }
 
 .choice{
   width:100%;
+
   min-height:64px;
+
   background:#f3f4f6;
-  border:2px solid transparent;
+
+  border:
+    2px solid transparent;
+
   text-align:left;
+
   padding:16px;
+
   font-size:18px;
 }
 
 .choice.selectedCorrect{
   background:#dcfce7;
+
   border-color:#22c55e;
+
   color:#166534;
 }
 
 .choice.selectedWrong{
   background:#fee2e2;
+
   border-color:#ef4444;
+
   color:#991b1b;
 }
 
 .choice.showCorrect{
   background:#dcfce7;
+
   border-color:#22c55e;
 }
 
 .feedback{
   margin-top:18px;
+
   padding:16px;
+
   border-radius:16px;
 }
 
@@ -274,199 +423,465 @@ textarea{
 
 .feedbackTitle{
   font-size:22px;
+
   font-weight:850;
 }
 
 .divider{
   height:1px;
-  background:var(--line);
-  margin:16px 0;
+
+  background:
+    var(--line);
+
+  margin:
+    16px 0;
+}
+
+.audio-buttons{
+  display:flex;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+
+  margin-top:12px;
 }
 
 #nextQuestion{
   width:100%;
+
   margin-top:16px;
 }
 
 @media(max-width:560px){
-  .grid2{grid-template-columns:1fr}
+
+  .grid2{
+    grid-template-columns:
+      1fr;
+  }
+
 }
+
 </style>
 </head>
 
 <body>
 
 <header>
-<h1>My English Words</h1>
+  <h1>
+    My English Words
+  </h1>
 </header>
 
 <main>
 
 <div class="tabs">
-  <button class="tab active" data-tab="words">単語帳</button>
-  <button class="tab" data-tab="add">追加</button>
-  <button class="tab" data-tab="quiz">テスト</button>
-  <button class="tab" data-tab="backup">バックアップ</button>
+
+  <button
+    class="tab active"
+    data-tab="words"
+  >
+    単語帳
+  </button>
+
+  <button
+    class="tab"
+    data-tab="add"
+  >
+    追加
+  </button>
+
+  <button
+    class="tab"
+    data-tab="quiz"
+  >
+    テスト
+  </button>
+
+  <button
+    class="tab"
+    data-tab="backup"
+  >
+    バックアップ
+  </button>
+
 </div>
 
 
-<!-- 単語帳 -->
+<!-- ====================
+     単語帳
+==================== -->
 
 <section id="wordsSection">
 
-<div class="card">
-  <div class="space">
-    <div>
-      <div class="section-title">登録単語</div>
-      <div class="muted"><span id="wordCount">0</span> words</div>
-    </div>
+  <div class="card">
 
-    <select id="filterMode" style="width:auto">
-      <option value="all">すべて</option>
-      <option value="wrong">間違えた単語</option>
-      <option value="weak">苦手順</option>
-    </select>
-  </div>
-</div>
+    <div class="space">
 
-<div id="wordList"></div>
+      <div>
 
-</section>
+        <div class="section-title">
+          登録単語
+        </div>
 
+        <div class="muted">
+          <span id="wordCount">
+            0
+          </span>
+          words
+        </div>
 
-<!-- 追加 -->
+      </div>
 
-<section id="addSection" class="hidden">
+      <select
+        id="filterMode"
+        style="width:auto"
+      >
 
-<div class="card">
+        <option value="all">
+          すべて
+        </option>
 
-  <div class="section-title" id="formTitle">単語を追加</div>
-  <div class="muted">単語と意味だけ必須です。</div>
+        <option value="wrong">
+          間違えた単語
+        </option>
 
-  <input type="hidden" id="editId">
+        <option value="weak">
+          苦手順
+        </option>
 
-  <label>英単語・フレーズ</label>
-  <input id="word" autocapitalize="none" autocomplete="off" placeholder="例: impact">
-
-  <label>例文</label>
-  <textarea id="example" placeholder="The new policy had a big impact on the company."></textarea>
-
-  <label>意味</label>
-  <textarea id="meaning" placeholder="例: 影響、衝撃 / 影響を与える"></textarea>
-
-  <label>例文の日本語訳</label>
-  <textarea id="translation" placeholder="その新しい方針は会社に大きな影響を与えた。"></textarea>
-
-  <label>使い方メモ</label>
-  <textarea id="usage" placeholder="例: impact on ～ で「～への影響」"></textarea>
-
-  <label>自由メモ</label>
-  <textarea id="memo" placeholder="自分の覚え方やニュアンス"></textarea>
-
-  <div class="row" style="margin-top:18px">
-    <button class="primary" id="saveBtn">保存</button>
-    <button id="cancelEdit" class="hidden">キャンセル</button>
-  </div>
-
-</div>
-
-</section>
-
-
-<!-- テスト -->
-
-<section id="quizSection" class="hidden">
-
-<div class="card">
-
-  <div class="section-title">テスト</div>
-
-  <div class="grid2">
-
-    <div>
-      <label>テスト形式</label>
-
-      <select id="quizMode">
-        <option value="en-ja">英語 → 日本語</option>
-        <option value="ja-en">日本語 → 英語</option>
-        <option value="audio">音声 → 英単語</option>
       </select>
-    </div>
 
-    <div>
-      <label>出題範囲</label>
-
-      <select id="quizScope">
-        <option value="all">すべて</option>
-        <option value="wrong">間違えた単語のみ</option>
-        <option value="weak">苦手優先</option>
-      </select>
     </div>
 
   </div>
 
-  <button class="primary" id="startQuiz" style="width:100%;margin-top:18px">
-    テスト開始
-  </button>
-
-</div>
-
-
-<div id="quizCard" class="card hidden">
-
-  <div class="muted" id="quizProgress"></div>
-
-  <div id="quizPrompt" class="quizPrompt"></div>
-
-  <div id="audioArea" class="row hidden" style="justify-content:center">
-    <button class="blue" id="playAudio">▶ 再生</button>
-  </div>
-
-  <div id="choices" class="choices"></div>
-
-  <div id="feedback" class="hidden"></div>
-
-  <button class="primary hidden" id="nextQuestion">
-    次の問題 →
-  </button>
-
-</div>
-
-
-<div id="quizResult" class="card hidden"></div>
+  <div id="wordList"></div>
 
 </section>
 
 
-<!-- バックアップ -->
+<!-- ====================
+     追加
+==================== -->
 
-<section id="backupSection" class="hidden">
+<section
+  id="addSection"
+  class="hidden"
+>
 
-<div class="card">
+  <div class="card">
 
-  <div class="section-title">バックアップ</div>
+    <div
+      class="section-title"
+      id="formTitle"
+    >
+      単語を追加
+    </div>
 
-  <div class="muted">
-    Safariのデータ削除や機種変更に備えて保存できます。
+    <div class="muted">
+      単語と意味だけ必須です。
+    </div>
+
+    <input
+      type="hidden"
+      id="editId"
+    >
+
+
+    <label>
+      英単語・フレーズ
+    </label>
+
+    <input
+      id="word"
+      autocapitalize="none"
+      autocomplete="off"
+      placeholder="例: impact"
+    >
+
+
+    <label>
+      例文
+    </label>
+
+    <textarea
+      id="example"
+      placeholder="The new policy had a big impact on the company."
+    ></textarea>
+
+
+    <label>
+      意味
+    </label>
+
+    <textarea
+      id="meaning"
+      placeholder="例: 影響、衝撃 / 影響を与える"
+    ></textarea>
+
+
+    <label>
+      例文の日本語訳
+    </label>
+
+    <textarea
+      id="translation"
+      placeholder="その新しい方針は会社に大きな影響を与えた。"
+    ></textarea>
+
+
+    <label>
+      使い方メモ
+    </label>
+
+    <textarea
+      id="usage"
+      placeholder="例: impact on ～ で「～への影響」"
+    ></textarea>
+
+
+    <label>
+      自由メモ
+    </label>
+
+    <textarea
+      id="memo"
+      placeholder="自分の覚え方やニュアンス"
+    ></textarea>
+
+
+    <div
+      class="row"
+      style="margin-top:18px"
+    >
+
+      <button
+        class="primary"
+        id="saveBtn"
+      >
+        保存
+      </button>
+
+      <button
+        id="cancelEdit"
+        class="hidden"
+      >
+        キャンセル
+      </button>
+
+    </div>
+
   </div>
 
-  <label>バックアップを書き出す</label>
+</section>
 
-  <button class="primary" id="exportBtn" style="width:100%">
-    JSONファイルを保存
-  </button>
 
-  <div class="divider"></div>
+<!-- ====================
+     テスト
+==================== -->
 
-  <label>バックアップを読み込む</label>
+<section
+  id="quizSection"
+  class="hidden"
+>
 
-  <input type="file" id="importFile" accept=".json,application/json">
+  <div class="card">
 
-  <button id="importBtn" style="width:100%;margin-top:12px">
-    選んだバックアップを復元
-  </button>
+    <div class="section-title">
+      テスト
+    </div>
 
-</div>
+    <div class="grid2">
+
+      <div>
+
+        <label>
+          テスト形式
+        </label>
+
+        <select id="quizMode">
+
+          <option value="en-ja">
+            英語 → 日本語
+          </option>
+
+          <option value="ja-en">
+            日本語 → 英語
+          </option>
+
+          <option value="audio">
+            音声 → 日本語
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div>
+
+        <label>
+          出題範囲
+        </label>
+
+        <select id="quizScope">
+
+          <option value="all">
+            すべて
+          </option>
+
+          <option value="wrong">
+            間違えた単語のみ
+          </option>
+
+          <option value="weak">
+            苦手優先
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="primary"
+      id="startQuiz"
+      style="
+        width:100%;
+        margin-top:18px;
+      "
+    >
+      テスト開始
+    </button>
+
+  </div>
+
+
+  <div
+    id="quizCard"
+    class="card hidden"
+  >
+
+    <div
+      class="muted"
+      id="quizProgress"
+    ></div>
+
+
+    <div
+      id="quizPrompt"
+      class="quizPrompt"
+    ></div>
+
+
+    <div
+      id="audioArea"
+      class="row hidden"
+      style="justify-content:center"
+    >
+
+      <button
+        class="blue"
+        id="playAudio"
+      >
+        ▶ 再生
+      </button>
+
+    </div>
+
+
+    <div
+      id="choices"
+      class="choices"
+    ></div>
+
+
+    <div
+      id="feedback"
+      class="hidden"
+    ></div>
+
+
+    <button
+      class="primary hidden"
+      id="nextQuestion"
+    >
+      次の問題 →
+    </button>
+
+  </div>
+
+
+  <div
+    id="quizResult"
+    class="card hidden"
+  ></div>
+
+</section>
+
+
+<!-- ====================
+     バックアップ
+==================== -->
+
+<section
+  id="backupSection"
+  class="hidden"
+>
+
+  <div class="card">
+
+    <div class="section-title">
+      バックアップ
+    </div>
+
+    <div class="muted">
+      Safariのデータ削除や
+      機種変更に備えて保存できます。
+    </div>
+
+
+    <label>
+      バックアップを書き出す
+    </label>
+
+    <button
+      class="primary"
+      id="exportBtn"
+      style="width:100%"
+    >
+      JSONファイルを保存
+    </button>
+
+
+    <div class="divider"></div>
+
+
+    <label>
+      バックアップを読み込む
+    </label>
+
+    <input
+      type="file"
+      id="importFile"
+      accept=".json,application/json"
+    >
+
+
+    <button
+      id="importBtn"
+      style="
+        width:100%;
+        margin-top:12px;
+      "
+    >
+      選んだバックアップを復元
+    </button>
+
+  </div>
 
 </section>
 
@@ -474,407 +889,973 @@ textarea{
 
 
 <script>
+
 (() => {
 
 "use strict";
 
-const STORAGE_KEY = "myEnglishWords_v2";
-const LEGACY_KEYS = ["myEnglishWords","myEnglishWords_v1"];
 
-const $ = id => document.getElementById(id);
+/* =========================
+   保存
+========================= */
 
-let words = loadWords();
+const STORAGE_KEY =
+  "myEnglishWords_v2";
+
+
+const LEGACY_KEYS = [
+  "myEnglishWords",
+  "myEnglishWords_v1"
+];
+
+
+const $ =
+  id =>
+  document.getElementById(id);
+
+
+let words =
+  loadWords();
+
 
 let quizItems = [];
+
 let quizIndex = 0;
+
 let quizCorrect = 0;
+
 let quizAnswered = false;
+
 
 
 function loadWords(){
 
   try{
 
-    const current = localStorage.getItem(STORAGE_KEY);
+    const current =
+      localStorage
+        .getItem(
+          STORAGE_KEY
+        );
+
 
     if(current){
 
-      const parsed = JSON.parse(current);
-
-      if(Array.isArray(parsed)){
-        return parsed;
-      }
-    }
-
-    for(const key of LEGACY_KEYS){
-
-      const old = localStorage.getItem(key);
-
-      if(!old) continue;
-
-      const parsed = JSON.parse(old);
-
-      if(Array.isArray(parsed)){
-
-        localStorage.setItem(
-          STORAGE_KEY,
-          JSON.stringify(parsed)
+      const parsed =
+        JSON.parse(
+          current
         );
 
+
+      if(
+        Array.isArray(
+          parsed
+        )
+      ){
+
         return parsed;
+
       }
+
     }
 
-  }catch(e){
-    console.error(e);
+
+    for(
+      const key
+      of
+      LEGACY_KEYS
+    ){
+
+      const old =
+        localStorage
+          .getItem(
+            key
+          );
+
+
+      if(!old){
+        continue;
+      }
+
+
+      const parsed =
+        JSON.parse(
+          old
+        );
+
+
+      if(
+        Array.isArray(
+          parsed
+        )
+      ){
+
+        localStorage
+          .setItem(
+            STORAGE_KEY,
+            JSON.stringify(
+              parsed
+            )
+          );
+
+
+        return parsed;
+
+      }
+
+    }
+
   }
 
+  catch(error){
+
+    console.error(
+      error
+    );
+
+  }
+
+
   return [];
+
 }
+
 
 
 function saveWords(){
 
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(words)
-  );
+  localStorage
+    .setItem(
+      STORAGE_KEY,
+      JSON.stringify(
+        words
+      )
+    );
+
 
   renderWords();
+
 }
+
 
 
 function uid(){
 
-  return Date.now().toString(36)
-    + "_"
-    + Math.random().toString(36).slice(2,8);
+  return (
+    Date.now()
+      .toString(36)
+    +
+    "_"
+    +
+    Math.random()
+      .toString(36)
+      .slice(2,8)
+  );
+
 }
 
+
+
+/* =========================
+   音声
+========================= */
 
 function speak(text){
 
-  if(!text) return;
-
-  if(!("speechSynthesis" in window)){
-    alert("音声読み上げを利用できません。");
+  if(!text){
     return;
   }
 
-  speechSynthesis.cancel();
 
-  const u = new SpeechSynthesisUtterance(text);
+  if(
+    !(
+      "speechSynthesis"
+      in
+      window
+    )
+  ){
 
-  u.lang = "en-US";
-  u.rate = 0.85;
+    alert(
+      "音声読み上げを利用できません。"
+    );
 
-  speechSynthesis.speak(u);
-}
+    return;
 
-
-function makeText(tag,text,className=""){
-
-  const el = document.createElement(tag);
-
-  if(className){
-    el.className = className;
   }
 
-  el.textContent = text || "";
 
-  return el;
+  speechSynthesis
+    .cancel();
+
+
+  const utterance =
+    new SpeechSynthesisUtterance(
+      text
+    );
+
+
+  utterance.lang =
+    "en-US";
+
+
+  utterance.rate =
+    0.85;
+
+
+  const voices =
+    speechSynthesis
+      .getVoices();
+
+
+  const englishVoice =
+    voices.find(
+      voice =>
+        voice.lang
+        ===
+        "en-US"
+    )
+    ||
+    voices.find(
+      voice =>
+        voice.lang
+        &&
+        voice.lang
+          .startsWith(
+            "en"
+          )
+    );
+
+
+  if(englishVoice){
+
+    utterance.voice =
+      englishVoice;
+
+  }
+
+
+  speechSynthesis
+    .speak(
+      utterance
+    );
+
 }
+
+
+
+/* =========================
+   共通
+========================= */
+
+function makeText(
+  tag,
+  text,
+  className = ""
+){
+
+  const element =
+    document
+      .createElement(
+        tag
+      );
+
+
+  if(className){
+
+    element.className =
+      className;
+
+  }
+
+
+  element.textContent =
+    text || "";
+
+
+  return element;
+
+}
+
 
 
 function switchTab(name){
 
-  document.querySelectorAll(".tab").forEach(btn => {
+  document
+    .querySelectorAll(
+      ".tab"
+    )
+    .forEach(
+      button => {
 
-    btn.classList.toggle(
-      "active",
-      btn.dataset.tab === name
+        button
+          .classList
+          .toggle(
+            "active",
+            button.dataset.tab
+            ===
+            name
+          );
+
+      }
     );
 
-  });
 
-  $("wordsSection").classList.toggle("hidden",name !== "words");
-  $("addSection").classList.toggle("hidden",name !== "add");
-  $("quizSection").classList.toggle("hidden",name !== "quiz");
-  $("backupSection").classList.toggle("hidden",name !== "backup");
+  $("wordsSection")
+    .classList
+    .toggle(
+      "hidden",
+      name !== "words"
+    );
 
-  if(name === "words"){
+
+  $("addSection")
+    .classList
+    .toggle(
+      "hidden",
+      name !== "add"
+    );
+
+
+  $("quizSection")
+    .classList
+    .toggle(
+      "hidden",
+      name !== "quiz"
+    );
+
+
+  $("backupSection")
+    .classList
+    .toggle(
+      "hidden",
+      name !== "backup"
+    );
+
+
+  if(
+    name
+    ===
+    "words"
+  ){
+
     renderWords();
+
   }
+
 }
 
 
-document.querySelectorAll(".tab").forEach(btn => {
 
-  btn.addEventListener("click",() => {
-    switchTab(btn.dataset.tab);
-  });
+document
+  .querySelectorAll(
+    ".tab"
+  )
+  .forEach(
+    button => {
 
-});
+      button
+        .addEventListener(
+          "click",
+          () => {
+
+            switchTab(
+              button.dataset.tab
+            );
+
+          }
+        );
+
+    }
+  );
 
 
-function weakScore(w){
 
-  return Number(w.wrongCount || 0) * 3
-    - Number(w.correctCount || 0);
+/* =========================
+   単語帳
+========================= */
+
+function weakScore(word){
+
+  return (
+    Number(
+      word.wrongCount
+      ||
+      0
+    )
+    *
+    3
+    -
+    Number(
+      word.correctCount
+      ||
+      0
+    )
+  );
+
 }
+
 
 
 function renderWords(){
 
-  let list = [...words];
+  let list =
+    [...words];
 
-  const mode = $("filterMode").value;
 
-  if(mode === "wrong"){
+  const mode =
+    $("filterMode")
+      .value;
 
-    list = list.filter(
-      w => Number(w.wrongCount || 0) > 0
-    );
 
-  }else if(mode === "weak"){
+  if(
+    mode
+    ===
+    "wrong"
+  ){
+
+    list =
+      list.filter(
+        word =>
+          Number(
+            word.wrongCount
+            ||
+            0
+          )
+          >
+          0
+      );
+
+  }
+
+
+  else if(
+    mode
+    ===
+    "weak"
+  ){
 
     list.sort(
-      (a,b) => weakScore(b) - weakScore(a)
+      (a,b) =>
+        weakScore(b)
+        -
+        weakScore(a)
     );
 
-  }else{
+  }
+
+
+  else{
 
     list.reverse();
+
   }
 
-  $("wordCount").textContent = words.length;
 
-  const container = $("wordList");
+  $("wordCount")
+    .textContent =
+    words.length;
 
-  container.innerHTML = "";
 
-  if(!list.length){
+  const container =
+    $("wordList");
 
-    container.appendChild(
-      makeText(
-        "div",
-        "まだ単語がありません。",
-        "empty"
-      )
-    );
+
+  container.innerHTML =
+    "";
+
+
+  if(
+    !list.length
+  ){
+
+    container
+      .appendChild(
+        makeText(
+          "div",
+          "まだ単語がありません。",
+          "empty"
+        )
+      );
+
 
     return;
+
   }
 
 
-  list.forEach(w => {
 
-    const card = document.createElement("div");
+  list.forEach(
+    wordData => {
 
-    card.className = "card";
-
-
-    const top = document.createElement("div");
-
-    top.className = "space";
-
-
-    const left = document.createElement("div");
-
-    left.appendChild(
-      makeText("div",w.word,"word")
-    );
-
-    left.appendChild(
-      makeText("div",w.meaning,"meaning")
-    );
+      const card =
+        document
+          .createElement(
+            "div"
+          );
 
 
-    const speaker = makeText("button","🔊");
-
-    speaker.addEventListener(
-      "click",
-      () => speak(w.word)
-    );
+      card.className =
+        "card";
 
 
-    top.append(left,speaker);
 
-    card.appendChild(top);
+      const top =
+        document
+          .createElement(
+            "div"
+          );
 
 
-    if(w.example){
+      top.className =
+        "space";
 
-      const exampleBox = document.createElement("div");
 
-      exampleBox.style.marginTop = "18px";
 
-      exampleBox.appendChild(
-        makeText("b","例文")
+      const left =
+        document
+          .createElement(
+            "div"
+          );
+
+
+      left.appendChild(
+        makeText(
+          "div",
+          wordData.word,
+          "word"
+        )
       );
 
-      const example = makeText(
-        "div",
-        w.example,
-        "small"
+
+      left.appendChild(
+        makeText(
+          "div",
+          wordData.meaning,
+          "meaning"
+        )
       );
 
-      example.style.marginTop = "6px";
-
-      exampleBox.appendChild(example);
 
 
-      const exampleSpeaker =
-        makeText("button","🔊 例文を再生");
+      const speaker =
+        makeText(
+          "button",
+          "🔊"
+        );
 
-      exampleSpeaker.style.marginTop = "10px";
 
-      exampleSpeaker.addEventListener(
-        "click",
-        () => speak(w.example)
+      speaker
+        .addEventListener(
+          "click",
+          () =>
+            speak(
+              wordData.word
+            )
+        );
+
+
+      top.append(
+        left,
+        speaker
       );
 
-      exampleBox.appendChild(exampleSpeaker);
 
-      card.appendChild(exampleBox);
+      card.appendChild(
+        top
+      );
+
+
+
+      if(
+        wordData.example
+      ){
+
+        const exampleBox =
+          document
+            .createElement(
+              "div"
+            );
+
+
+        exampleBox
+          .style
+          .marginTop =
+          "18px";
+
+
+        exampleBox
+          .appendChild(
+            makeText(
+              "b",
+              "例文"
+            )
+          );
+
+
+        const example =
+          makeText(
+            "div",
+            wordData.example,
+            "small"
+          );
+
+
+        example
+          .style
+          .marginTop =
+          "6px";
+
+
+        exampleBox
+          .appendChild(
+            example
+          );
+
+
+        const exampleSpeaker =
+          makeText(
+            "button",
+            "🔊 例文を再生"
+          );
+
+
+        exampleSpeaker
+          .style
+          .marginTop =
+          "10px";
+
+
+        exampleSpeaker
+          .addEventListener(
+            "click",
+            () =>
+              speak(
+                wordData.example
+              )
+          );
+
+
+        exampleBox
+          .appendChild(
+            exampleSpeaker
+          );
+
+
+        card.appendChild(
+          exampleBox
+        );
+
+      }
+
+
+
+      if(
+        wordData.translation
+      ){
+
+        const translation =
+          makeText(
+            "div",
+            wordData.translation,
+            "muted"
+          );
+
+
+        translation
+          .style
+          .marginTop =
+          "8px";
+
+
+        card.appendChild(
+          translation
+        );
+
+      }
+
+
+
+      if(
+        wordData.usage
+      ){
+
+        const usageBox =
+          document
+            .createElement(
+              "div"
+            );
+
+
+        usageBox
+          .style
+          .marginTop =
+          "16px";
+
+
+        usageBox
+          .appendChild(
+            makeText(
+              "span",
+              "使い方",
+              "pill"
+            )
+          );
+
+
+        const usage =
+          makeText(
+            "div",
+            wordData.usage,
+            "small"
+          );
+
+
+        usage.style.marginTop =
+          "8px";
+
+
+        usageBox
+          .appendChild(
+            usage
+          );
+
+
+        card.appendChild(
+          usageBox
+        );
+
+      }
+
+
+
+      if(
+        wordData.memo
+      ){
+
+        const memoBox =
+          document
+            .createElement(
+              "div"
+            );
+
+
+        memoBox
+          .style
+          .marginTop =
+          "14px";
+
+
+        memoBox
+          .appendChild(
+            makeText(
+              "span",
+              "メモ",
+              "pill"
+            )
+          );
+
+
+        const memo =
+          makeText(
+            "div",
+            wordData.memo,
+            "small"
+          );
+
+
+        memo
+          .style
+          .marginTop =
+          "8px";
+
+
+        memoBox
+          .appendChild(
+            memo
+          );
+
+
+        card.appendChild(
+          memoBox
+        );
+
+      }
+
+
+
+      const correct =
+        Number(
+          wordData.correctCount
+          ||
+          0
+        );
+
+
+      const wrong =
+        Number(
+          wordData.wrongCount
+          ||
+          0
+        );
+
+
+      const stats =
+        document
+          .createElement(
+            "div"
+          );
+
+
+      stats.className =
+        "stats";
+
+
+      [
+        [
+          "正解",
+          correct
+        ],
+        [
+          "間違い",
+          wrong
+        ],
+        [
+          "回答",
+          correct + wrong
+        ]
+      ]
+      .forEach(
+        ([label,value]) => {
+
+          const stat =
+            document
+              .createElement(
+                "div"
+              );
+
+
+          stat.className =
+            "stat";
+
+
+          stat.appendChild(
+            makeText(
+              "strong",
+              String(value)
+            )
+          );
+
+
+          stat.appendChild(
+            makeText(
+              "span",
+              label,
+              "muted"
+            )
+          );
+
+
+          stats
+            .appendChild(
+              stat
+            );
+
+        }
+      );
+
+
+      card.appendChild(
+        stats
+      );
+
+
+
+      const actions =
+        document
+          .createElement(
+            "div"
+          );
+
+
+      actions.className =
+        "row";
+
+
+      actions.style.marginTop =
+        "16px";
+
+
+
+      const edit =
+        makeText(
+          "button",
+          "編集"
+        );
+
+
+      edit
+        .addEventListener(
+          "click",
+          () =>
+            editWord(
+              wordData.id
+            )
+        );
+
+
+
+      const del =
+        makeText(
+          "button",
+          "削除",
+          "danger"
+        );
+
+
+      del
+        .addEventListener(
+          "click",
+          () =>
+            deleteWord(
+              wordData.id
+            )
+        );
+
+
+
+      actions.append(
+        edit,
+        del
+      );
+
+
+      card.appendChild(
+        actions
+      );
+
+
+      container.appendChild(
+        card
+      );
+
     }
+  );
 
-
-    if(w.translation){
-
-      const tr = makeText(
-        "div",
-        w.translation,
-        "muted"
-      );
-
-      tr.style.marginTop = "8px";
-
-      card.appendChild(tr);
-    }
-
-
-    if(w.usage){
-
-      const box = document.createElement("div");
-
-      box.style.marginTop = "16px";
-
-      box.appendChild(
-        makeText("span","使い方","pill")
-      );
-
-      const txt = makeText(
-        "div",
-        w.usage,
-        "small"
-      );
-
-      txt.style.marginTop = "8px";
-
-      box.appendChild(txt);
-
-      card.appendChild(box);
-    }
-
-
-    if(w.memo){
-
-      const box = document.createElement("div");
-
-      box.style.marginTop = "14px";
-
-      box.appendChild(
-        makeText("span","メモ","pill")
-      );
-
-      const txt = makeText(
-        "div",
-        w.memo,
-        "small"
-      );
-
-      txt.style.marginTop = "8px";
-
-      box.appendChild(txt);
-
-      card.appendChild(box);
-    }
-
-
-    const correct = Number(w.correctCount || 0);
-    const wrong = Number(w.wrongCount || 0);
-
-    const stats = document.createElement("div");
-
-    stats.className = "stats";
-
-    [
-      ["正解",correct],
-      ["間違い",wrong],
-      ["回答",correct + wrong]
-    ].forEach(([label,value]) => {
-
-      const stat = document.createElement("div");
-
-      stat.className = "stat";
-
-      stat.appendChild(
-        makeText("strong",String(value))
-      );
-
-      stat.appendChild(
-        makeText("span",label,"muted")
-      );
-
-      stats.appendChild(stat);
-
-    });
-
-    card.appendChild(stats);
-
-
-    const actions = document.createElement("div");
-
-    actions.className = "row";
-    actions.style.marginTop = "16px";
-
-
-    const edit = makeText("button","編集");
-
-    edit.addEventListener(
-      "click",
-      () => editWord(w.id)
-    );
-
-
-    const del = makeText(
-      "button",
-      "削除",
-      "danger"
-    );
-
-    del.addEventListener(
-      "click",
-      () => deleteWord(w.id)
-    );
-
-
-    actions.append(edit,del);
-
-    card.appendChild(actions);
-
-    container.appendChild(card);
-
-  });
 }
 
 
-$("filterMode").addEventListener(
-  "change",
-  renderWords
-);
 
+$("filterMode")
+  .addEventListener(
+    "change",
+    renderWords
+  );
+
+
+
+/* =========================
+   追加 / 編集
+========================= */
 
 function clearForm(){
 
@@ -886,350 +1867,755 @@ function clearForm(){
     "translation",
     "usage",
     "memo"
-  ].forEach(id => {
-    $(id).value = "";
-  });
+  ]
+  .forEach(
+    id => {
 
-  $("formTitle").textContent = "単語を追加";
+      $(id).value =
+        "";
 
-  $("cancelEdit").classList.add("hidden");
+    }
+  );
+
+
+  $("formTitle")
+    .textContent =
+    "単語を追加";
+
+
+  $("cancelEdit")
+    .classList
+    .add(
+      "hidden"
+    );
+
 }
 
 
-$("saveBtn").addEventListener("click",() => {
 
-  const word = $("word").value.trim();
-  const meaning = $("meaning").value.trim();
+$("saveBtn")
+  .addEventListener(
+    "click",
+    () => {
 
-  if(!word || !meaning){
-
-    alert("単語と意味は入力してください。");
-
-    return;
-  }
-
-  const data = {
-
-    word,
-
-    example:$("example").value.trim(),
-
-    meaning,
-
-    translation:$("translation").value.trim(),
-
-    usage:$("usage").value.trim(),
-
-    memo:$("memo").value.trim(),
-
-    updatedAt:Date.now()
-
-  };
+      const word =
+        $("word")
+          .value
+          .trim();
 
 
-  const id = $("editId").value;
+      const meaning =
+        $("meaning")
+          .value
+          .trim();
 
 
-  if(id){
+      if(
+        !word
+        ||
+        !meaning
+      ){
 
-    const index = words.findIndex(
-      w => w.id === id
-    );
+        alert(
+          "単語と意味は入力してください。"
+        );
 
-    if(index !== -1){
+        return;
 
-      words[index] = {
-        ...words[index],
-        ...data
+      }
+
+
+
+      const data = {
+
+        word,
+
+        example:
+          $("example")
+            .value
+            .trim(),
+
+        meaning,
+
+        translation:
+          $("translation")
+            .value
+            .trim(),
+
+        usage:
+          $("usage")
+            .value
+            .trim(),
+
+        memo:
+          $("memo")
+            .value
+            .trim(),
+
+        updatedAt:
+          Date.now()
+
       };
+
+
+
+      const id =
+        $("editId")
+          .value;
+
+
+
+      if(id){
+
+        const index =
+          words
+            .findIndex(
+              item =>
+                item.id
+                ===
+                id
+            );
+
+
+        if(
+          index
+          !==
+          -1
+        ){
+
+          words[index] = {
+            ...words[index],
+            ...data
+          };
+
+        }
+
+      }
+
+
+      else{
+
+        words.push({
+
+          id:uid(),
+
+          ...data,
+
+          correctCount:0,
+
+          wrongCount:0,
+
+          createdAt:
+            Date.now()
+
+        });
+
+      }
+
+
+
+      saveWords();
+
+
+      clearForm();
+
+
+      switchTab(
+        "words"
+      );
+
+
+      window.scrollTo({
+        top:0,
+        behavior:"smooth"
+      });
+
     }
-
-  }else{
-
-    words.push({
-
-      id:uid(),
-
-      ...data,
-
-      correctCount:0,
-
-      wrongCount:0,
-
-      createdAt:Date.now()
-
-    });
-  }
+  );
 
 
-  saveWords();
 
-  clearForm();
+$("cancelEdit")
+  .addEventListener(
+    "click",
+    () => {
 
-  switchTab("words");
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-});
+      clearForm();
 
 
-$("cancelEdit").addEventListener("click",() => {
+      switchTab(
+        "words"
+      );
 
-  clearForm();
+    }
+  );
 
-  switchTab("words");
-
-});
 
 
 function editWord(id){
 
-  const w = words.find(
-    x => x.id === id
+  const wordData =
+    words.find(
+      item =>
+        item.id
+        ===
+        id
+    );
+
+
+  if(
+    !wordData
+  ){
+    return;
+  }
+
+
+
+  $("editId").value =
+    wordData.id;
+
+
+  $("word").value =
+    wordData.word
+    ||
+    "";
+
+
+  $("example").value =
+    wordData.example
+    ||
+    "";
+
+
+  $("meaning").value =
+    wordData.meaning
+    ||
+    "";
+
+
+  $("translation").value =
+    wordData.translation
+    ||
+    "";
+
+
+  $("usage").value =
+    wordData.usage
+    ||
+    "";
+
+
+  $("memo").value =
+    wordData.memo
+    ||
+    "";
+
+
+
+  $("formTitle")
+    .textContent =
+    "単語を編集";
+
+
+  $("cancelEdit")
+    .classList
+    .remove(
+      "hidden"
+    );
+
+
+  switchTab(
+    "add"
   );
 
-  if(!w) return;
-
-  $("editId").value = w.id;
-  $("word").value = w.word || "";
-  $("example").value = w.example || "";
-  $("meaning").value = w.meaning || "";
-  $("translation").value = w.translation || "";
-  $("usage").value = w.usage || "";
-  $("memo").value = w.memo || "";
-
-  $("formTitle").textContent = "単語を編集";
-
-  $("cancelEdit").classList.remove("hidden");
-
-  switchTab("add");
 
   window.scrollTo({
     top:0,
     behavior:"smooth"
   });
+
 }
+
 
 
 function deleteWord(id){
 
-  if(!confirm("この単語を削除しますか？")){
+  if(
+    !confirm(
+      "この単語を削除しますか？"
+    )
+  ){
     return;
   }
 
-  words = words.filter(
-    w => w.id !== id
-  );
+
+  words =
+    words.filter(
+      word =>
+        word.id
+        !==
+        id
+    );
+
 
   saveWords();
+
 }
 
 
-/* --------------------
-   3択テスト
--------------------- */
 
+/* =========================
+   3択テスト
+========================= */
 
 function shuffle(array){
 
-  const a = [...array];
+  const result =
+    [...array];
 
-  for(let i=a.length-1;i>0;i--){
 
-    const j = Math.floor(
-      Math.random() * (i+1)
-    );
+  for(
+    let i =
+      result.length - 1;
 
-    [a[i],a[j]] = [a[j],a[i]];
+    i > 0;
+
+    i--
+  ){
+
+    const j =
+      Math.floor(
+        Math.random()
+        *
+        (i + 1)
+      );
+
+
+    [
+      result[i],
+      result[j]
+    ]
+    =
+    [
+      result[j],
+      result[i]
+    ];
+
   }
 
-  return a;
+
+  return result;
+
 }
+
 
 
 function weightedWeakPool(source){
 
   const result = [];
 
-  source.forEach(w => {
 
-    const wrong = Number(w.wrongCount || 0);
+  source.forEach(
+    word => {
 
-    const correct = Number(w.correctCount || 0);
+      const wrong =
+        Number(
+          word.wrongCount
+          ||
+          0
+        );
 
-    const weight = Math.max(
-      1,
-      1 + wrong * 2 - Math.floor(correct / 3)
-    );
 
-    for(
-      let i=0;
-      i<Math.min(weight,5);
-      i++
-    ){
-      result.push(w);
+      const correct =
+        Number(
+          word.correctCount
+          ||
+          0
+        );
+
+
+      const weight =
+        Math.max(
+          1,
+          1
+          +
+          wrong * 2
+          -
+          Math.floor(
+            correct / 3
+          )
+        );
+
+
+      for(
+        let i = 0;
+
+        i <
+        Math.min(
+          weight,
+          5
+        );
+
+        i++
+      ){
+
+        result.push(
+          word
+        );
+
+      }
+
     }
-
-  });
-
-  return shuffle(result);
-}
-
-
-function getChoiceText(w,mode){
-
-  if(mode === "en-ja"){
-    return w.meaning;
-  }
-
-  return w.word;
-}
-
-
-function getThreeChoices(correctWord,mode){
-
-  const others = words.filter(
-    w => w.id !== correctWord.id
   );
 
-  const randomOthers =
-    shuffle(others).slice(0,2);
 
-  const choices = [
-    correctWord,
-    ...randomOthers
-  ];
+  return shuffle(
+    result
+  );
 
-  return shuffle(choices).map(w => ({
-
-    id:w.id,
-
-    text:getChoiceText(w,mode)
-
-  }));
 }
 
 
-$("startQuiz").addEventListener("click",() => {
 
-  if(words.length < 3){
+/*
+ 英語→日本語
+ → 日本語の意味を選ぶ
 
-    alert(
-      "3択テストには最低3単語登録してください。"
+ 日本語→英語
+ → 英単語を選ぶ
+
+ 音声→日本語
+ → 英語音声を聞いて
+   日本語の意味を選ぶ
+*/
+
+function getChoiceText(
+  wordData,
+  mode
+){
+
+  if(
+    mode
+    ===
+    "ja-en"
+  ){
+
+    return wordData.word;
+
+  }
+
+
+  return wordData.meaning;
+
+}
+
+
+
+function getThreeChoices(
+  correctWord,
+  mode
+){
+
+  const others =
+    words.filter(
+      word =>
+        word.id
+        !==
+        correctWord.id
     );
 
-    return;
-  }
 
-
-  const scope = $("quizScope").value;
-
-  let pool = [...words];
-
-
-  if(scope === "wrong"){
-
-    pool = pool.filter(
-      w => Number(w.wrongCount || 0) > 0
+  const randomOthers =
+    shuffle(
+      others
+    )
+    .slice(
+      0,
+      2
     );
 
-  }else if(scope === "weak"){
 
-    pool = weightedWeakPool(pool);
-
-  }else{
-
-    pool = shuffle(pool);
-  }
+  const choices =
+    [
+      correctWord,
+      ...randomOthers
+    ];
 
 
-  if(!pool.length){
+  return shuffle(
+    choices
+  )
+  .map(
+    word => ({
 
-    alert("出題できる単語がありません。");
+      id:word.id,
 
-    return;
-  }
+      text:
+        getChoiceText(
+          word,
+          mode
+        )
+
+    })
+  );
+
+}
 
 
-  quizItems = pool;
 
-  quizIndex = 0;
+$("startQuiz")
+  .addEventListener(
+    "click",
+    () => {
 
-  quizCorrect = 0;
+      if(
+        words.length
+        <
+        3
+      ){
 
-  $("quizResult").classList.add("hidden");
+        alert(
+          "3択テストには最低3単語必要です。"
+        );
 
-  $("quizCard").classList.remove("hidden");
+        return;
 
-  showQuestion();
+      }
 
-});
+
+
+      const scope =
+        $("quizScope")
+          .value;
+
+
+      let pool =
+        [...words];
+
+
+
+      if(
+        scope
+        ===
+        "wrong"
+      ){
+
+        pool =
+          pool.filter(
+            word =>
+              Number(
+                word.wrongCount
+                ||
+                0
+              )
+              >
+              0
+          );
+
+      }
+
+
+      else if(
+        scope
+        ===
+        "weak"
+      ){
+
+        pool =
+          weightedWeakPool(
+            pool
+          );
+
+      }
+
+
+      else{
+
+        pool =
+          shuffle(
+            pool
+          );
+
+      }
+
+
+
+      if(
+        !pool.length
+      ){
+
+        alert(
+          "出題できる単語がありません。"
+        );
+
+        return;
+
+      }
+
+
+
+      quizItems =
+        pool;
+
+
+      quizIndex =
+        0;
+
+
+      quizCorrect =
+        0;
+
+
+
+      $("quizResult")
+        .classList
+        .add(
+          "hidden"
+        );
+
+
+      $("quizCard")
+        .classList
+        .remove(
+          "hidden"
+        );
+
+
+      showQuestion();
+
+    }
+  );
+
 
 
 function showQuestion(){
 
-  if(quizIndex >= quizItems.length){
+  if(
+    quizIndex
+    >=
+    quizItems.length
+  ){
 
     showQuizResult();
 
     return;
+
   }
 
 
-  quizAnswered = false;
+
+  quizAnswered =
+    false;
 
 
-  const current = quizItems[quizIndex];
 
-  const mode = $("quizMode").value;
+  const current =
+    quizItems[
+      quizIndex
+    ];
 
 
-  $("quizProgress").textContent =
+  const mode =
+    $("quizMode")
+      .value;
+
+
+
+  $("quizProgress")
+    .textContent =
     `${quizIndex + 1} / ${quizItems.length}`;
 
 
-  $("choices").innerHTML = "";
 
-  $("feedback").innerHTML = "";
-
-  $("feedback").className = "hidden";
-
-  $("nextQuestion").classList.add("hidden");
+  $("choices")
+    .innerHTML =
+    "";
 
 
-  if(mode === "en-ja"){
+  $("feedback")
+    .innerHTML =
+    "";
 
-    $("quizPrompt").textContent =
+
+  $("feedback")
+    .className =
+    "hidden";
+
+
+  $("nextQuestion")
+    .classList
+    .add(
+      "hidden"
+    );
+
+
+
+  if(
+    mode
+    ===
+    "en-ja"
+  ){
+
+    $("quizPrompt")
+      .textContent =
       current.word;
 
-    $("audioArea").classList.add("hidden");
+
+    $("audioArea")
+      .classList
+      .add(
+        "hidden"
+      );
 
   }
 
-  else if(mode === "ja-en"){
 
-    $("quizPrompt").textContent =
+
+  else if(
+    mode
+    ===
+    "ja-en"
+  ){
+
+    $("quizPrompt")
+      .textContent =
       current.meaning;
 
-    $("audioArea").classList.add("hidden");
+
+    $("audioArea")
+      .classList
+      .add(
+        "hidden"
+      );
 
   }
+
+
 
   else{
 
-    $("quizPrompt").textContent =
-      "🔊 音声を聞いて答える";
+    $("quizPrompt")
+      .textContent =
+      "🔊 音声を聞いて日本語を選ぶ";
 
-    $("audioArea").classList.remove("hidden");
+
+    $("audioArea")
+      .classList
+      .remove(
+        "hidden"
+      );
+
 
     setTimeout(
-      () => speak(current.word),
+      () =>
+        speak(
+          current.word
+        ),
       300
     );
+
   }
+
 
 
   const choices =
@@ -1239,54 +2625,67 @@ function showQuestion(){
     );
 
 
-  choices.forEach(choice => {
 
-    const button =
-      makeText(
-        "button",
-        choice.text,
-        "choice"
-      );
+  choices.forEach(
+    choice => {
 
-
-    button.dataset.id =
-      choice.id;
+      const button =
+        makeText(
+          "button",
+          choice.text,
+          "choice"
+        );
 
 
-    button.addEventListener(
-      "click",
-      () =>
-        answerQuestion(
-          choice.id,
+      button.dataset.id =
+        choice.id;
+
+
+      button
+        .addEventListener(
+          "click",
+          () =>
+            answerQuestion(
+              choice.id,
+              button
+            )
+        );
+
+
+      $("choices")
+        .appendChild(
           button
-        )
-    );
+        );
 
-
-    $("choices").appendChild(button);
-
-  });
+    }
+  );
 
 }
 
 
-$("playAudio").addEventListener("click",() => {
 
-  if(
-    quizIndex
-    <
-    quizItems.length
-  ){
+$("playAudio")
+  .addEventListener(
+    "click",
+    () => {
 
-    speak(
-      quizItems[
+      if(
         quizIndex
-      ].word
-    );
+        <
+        quizItems.length
+      ){
 
-  }
+        speak(
+          quizItems[
+            quizIndex
+          ].word
+        );
 
-});
+      }
+
+    }
+  );
+
 
 
 function answerQuestion(
@@ -1294,11 +2693,16 @@ function answerQuestion(
   selectedButton
 ){
 
-  if(quizAnswered){
+  if(
+    quizAnswered
+  ){
     return;
   }
 
-  quizAnswered = true;
+
+  quizAnswered =
+    true;
+
 
 
   const current =
@@ -1307,46 +2711,54 @@ function answerQuestion(
     ];
 
 
+
   const isCorrect =
     selectedId
     ===
     current.id;
 
 
+
   document
     .querySelectorAll(
       ".choice"
     )
-    .forEach(button => {
+    .forEach(
+      button => {
 
-      button.disabled =
-        true;
+        button.disabled =
+          true;
 
 
-      if(
-        button.dataset.id
-        ===
-        current.id
-      ){
+        if(
+          button.dataset.id
+          ===
+          current.id
+        ){
 
-        button
-          .classList
-          .add(
-            "showCorrect"
-          );
+          button
+            .classList
+            .add(
+              "showCorrect"
+            );
+
+        }
 
       }
+    );
 
-    });
 
 
-  if(isCorrect){
+  if(
+    isCorrect
+  ){
 
     selectedButton
       .classList
       .add(
         "selectedCorrect"
       );
+
 
     current.correctCount =
       Number(
@@ -1357,9 +2769,11 @@ function answerQuestion(
       +
       1;
 
+
     quizCorrect++;
 
   }
+
 
   else{
 
@@ -1368,6 +2782,7 @@ function answerQuestion(
       .add(
         "selectedWrong"
       );
+
 
     current.wrongCount =
       Number(
@@ -1381,20 +2796,27 @@ function answerQuestion(
   }
 
 
+
   current.updatedAt =
     Date.now();
 
 
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(words)
-  );
+
+  localStorage
+    .setItem(
+      STORAGE_KEY,
+      JSON.stringify(
+        words
+      )
+    );
+
 
 
   showFeedback(
     current,
     isCorrect
   );
+
 
 
   $("nextQuestion")
@@ -1406,8 +2828,13 @@ function answerQuestion(
 }
 
 
+
+/* =========================
+   解答後の説明
+========================= */
+
 function showFeedback(
-  w,
+  wordData,
   isCorrect
 ){
 
@@ -1431,6 +2858,7 @@ function showFeedback(
     );
 
 
+
   const title =
     makeText(
       "div",
@@ -1448,11 +2876,13 @@ function showFeedback(
   );
 
 
+
   const divider =
     document
       .createElement(
         "div"
       );
+
 
   divider.className =
     "divider";
@@ -1463,10 +2893,13 @@ function showFeedback(
   );
 
 
+
+  /* 単語 */
+
   box.appendChild(
     makeText(
       "div",
-      w.word,
+      wordData.word,
       "word"
     )
   );
@@ -1475,102 +2908,217 @@ function showFeedback(
   box.appendChild(
     makeText(
       "div",
-      w.meaning,
+      wordData.meaning,
       "meaning"
     )
   );
 
 
-  if(w.example){
 
-    const label =
+  /*
+   正解画面でも
+   単語音声を再生
+  */
+
+  const audioButtons =
+    document
+      .createElement(
+        "div"
+      );
+
+
+  audioButtons.className =
+    "audio-buttons";
+
+
+
+  const wordAudioButton =
+    makeText(
+      "button",
+      "🔊 単語を再生",
+      "blue"
+    );
+
+
+  wordAudioButton
+    .addEventListener(
+      "click",
+      () =>
+        speak(
+          wordData.word
+        )
+    );
+
+
+  audioButtons
+    .appendChild(
+      wordAudioButton
+    );
+
+
+
+  box.appendChild(
+    audioButtons
+  );
+
+
+
+  /* 例文 */
+
+  if(
+    wordData.example
+  ){
+
+    const exampleLabel =
       makeText(
         "div",
         "例文",
         "small"
       );
 
-    label.style.fontWeight =
+
+    exampleLabel
+      .style
+      .fontWeight =
       "800";
 
-    label.style.marginTop =
-      "16px";
+
+    exampleLabel
+      .style
+      .marginTop =
+      "18px";
 
 
     box.appendChild(
-      label
+      exampleLabel
     );
+
 
 
     box.appendChild(
       makeText(
         "div",
-        w.example,
+        wordData.example,
         "small"
       )
     );
 
+
+
+    /*
+     正解画面でも
+     例文音声を再生
+    */
+
+    const exampleAudioButton =
+      makeText(
+        "button",
+        "🔊 例文を再生"
+      );
+
+
+    exampleAudioButton
+      .style
+      .marginTop =
+      "10px";
+
+
+    exampleAudioButton
+      .addEventListener(
+        "click",
+        () =>
+          speak(
+            wordData.example
+          )
+      );
+
+
+    box.appendChild(
+      exampleAudioButton
+    );
+
   }
 
 
-  if(w.translation){
 
-    const tr =
+  /* 例文日本語 */
+
+  if(
+    wordData.translation
+  ){
+
+    const translation =
       makeText(
         "div",
-        w.translation,
+        wordData.translation,
         "muted"
       );
 
 
-    tr.style.marginTop =
-      "6px";
+    translation
+      .style
+      .marginTop =
+      "8px";
 
 
     box.appendChild(
-      tr
+      translation
     );
 
   }
 
 
-  if(w.usage){
 
-    const us =
+  /* 使い方 */
+
+  if(
+    wordData.usage
+  ){
+
+    const usage =
       makeText(
         "div",
         "使い方: "
         +
-        w.usage,
+        wordData.usage,
         "small"
       );
 
 
-    us.style.marginTop =
-      "14px";
+    usage
+      .style
+      .marginTop =
+      "16px";
 
 
     box.appendChild(
-      us
+      usage
     );
 
   }
 
 
-  if(w.memo){
+
+  /* メモ */
+
+  if(
+    wordData.memo
+  ){
 
     const memo =
       makeText(
         "div",
         "メモ: "
         +
-        w.memo,
+        wordData.memo,
         "small"
       );
 
 
-    memo.style.marginTop =
-      "10px";
+    memo
+      .style
+      .marginTop =
+      "12px";
 
 
     box.appendChild(
@@ -1580,25 +3128,36 @@ function showFeedback(
   }
 
 
-  box.classList.remove(
-    "hidden"
-  );
+
+  box
+    .classList
+    .remove(
+      "hidden"
+    );
 
 }
 
 
-$("nextQuestion").addEventListener("click",() => {
 
-  quizIndex++;
+$("nextQuestion")
+  .addEventListener(
+    "click",
+    () => {
 
-  showQuestion();
+      quizIndex++;
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
 
-});
+      showQuestion();
+
+
+      window.scrollTo({
+        top:0,
+        behavior:"smooth"
+      });
+
+    }
+  );
+
 
 
 function showQuizResult(){
@@ -1618,9 +3177,12 @@ function showQuizResult(){
     "";
 
 
-  result.classList.remove(
-    "hidden"
-  );
+  result
+    .classList
+    .remove(
+      "hidden"
+    );
+
 
 
   result.appendChild(
@@ -1632,17 +3194,15 @@ function showQuizResult(){
   );
 
 
-  const score =
+
+  result.appendChild(
     makeText(
       "div",
       `${quizCorrect} / ${quizItems.length}`,
       "quizPrompt"
-    );
-
-
-  result.appendChild(
-    score
+    )
   );
+
 
 
   const rate =
@@ -1653,6 +3213,7 @@ function showQuizResult(){
       *
       100
     );
+
 
 
   result.appendChild(
@@ -1669,241 +3230,302 @@ function showQuizResult(){
 }
 
 
-/* --------------------
+
+/* =========================
    バックアップ
--------------------- */
+========================= */
+
+$("exportBtn")
+  .addEventListener(
+    "click",
+    () => {
+
+      const payload = {
+
+        app:
+          "My English Words",
+
+        version:4,
+
+        exportedAt:
+          new Date()
+            .toISOString(),
+
+        words
+
+      };
 
 
-$("exportBtn").addEventListener("click",() => {
 
-  const payload = {
-
-    app:"My English Words",
-
-    version:3,
-
-    exportedAt:
-      new Date().toISOString(),
-
-    words
-
-  };
-
-
-  const blob =
-    new Blob(
-      [
-        JSON.stringify(
-          payload,
-          null,
-          2
-        )
-      ],
-      {
-        type:"application/json"
-      }
-    );
+      const blob =
+        new Blob(
+          [
+            JSON.stringify(
+              payload,
+              null,
+              2
+            )
+          ],
+          {
+            type:
+              "application/json"
+          }
+        );
 
 
-  const url =
-    URL.createObjectURL(
-      blob
-    );
+
+      const url =
+        URL.createObjectURL(
+          blob
+        );
 
 
-  const a =
-    document
-      .createElement(
-        "a"
+
+      const link =
+        document
+          .createElement(
+            "a"
+          );
+
+
+
+      const date =
+        new Date()
+          .toISOString()
+          .slice(
+            0,
+            10
+          );
+
+
+
+      link.href =
+        url;
+
+
+
+      link.download =
+        `english-words-backup-${date}.json`;
+
+
+
+      document.body
+        .appendChild(
+          link
+        );
+
+
+
+      link.click();
+
+
+      link.remove();
+
+
+
+      setTimeout(
+        () =>
+          URL
+            .revokeObjectURL(
+              url
+            ),
+        1000
       );
 
-
-  const date =
-    new Date()
-      .toISOString()
-      .slice(0,10);
-
-
-  a.href =
-    url;
-
-
-  a.download =
-    `english-words-backup-${date}.json`;
-
-
-  document.body
-    .appendChild(
-      a
-    );
-
-
-  a.click();
-
-  a.remove();
-
-
-  setTimeout(
-    () =>
-      URL.revokeObjectURL(
-        url
-      ),
-    1000
+    }
   );
 
-});
 
 
-$("importBtn").addEventListener("click",async () => {
+$("importBtn")
+  .addEventListener(
+    "click",
+    async () => {
 
-  const file =
-    $("importFile")
-      .files?.[0];
-
-
-  if(!file){
-
-    alert(
-      "バックアップファイルを選んでください。"
-    );
-
-    return;
-
-  }
+      const file =
+        $("importFile")
+          .files?.[0];
 
 
-  try{
 
-    const text =
-      await file.text();
+      if(!file){
 
-
-    const parsed =
-      JSON.parse(text);
-
-
-    const incoming =
-      Array.isArray(parsed)
-      ?
-      parsed
-      :
-      parsed.words;
-
-
-    if(
-      !Array.isArray(
-        incoming
-      )
-    ){
-
-      throw new Error();
-    }
-
-
-    const add =
-      confirm(
-        "OK = 現在の単語帳に追加\n\nキャンセル = 現在の単語帳をバックアップ内容で置き換え"
-      );
-
-
-    if(add){
-
-      const existingIds =
-        new Set(
-          words.map(
-            w => w.id
-          )
+        alert(
+          "バックアップファイルを選んでください。"
         );
 
-
-      const normalized =
-        incoming.map(
-          w => ({
-
-            ...w,
-
-            id:
-              w.id
-              &&
-              !existingIds.has(w.id)
-              ?
-              w.id
-              :
-              uid()
-
-          })
-        );
-
-
-      words = [
-        ...words,
-        ...normalized
-      ];
-
-    }
-
-    else{
-
-      const sure =
-        confirm(
-          "現在の単語帳を置き換えます。よろしいですか？"
-        );
-
-
-      if(!sure){
         return;
+
       }
 
 
-      words =
-        incoming.map(
-          w => ({
 
-            ...w,
+      try{
 
-            id:
-              w.id
-              ||
-              uid()
+        const text =
+          await file.text();
 
-          })
+
+
+        const parsed =
+          JSON.parse(
+            text
+          );
+
+
+
+        const incoming =
+          Array.isArray(
+            parsed
+          )
+          ?
+          parsed
+          :
+          parsed.words;
+
+
+
+        if(
+          !Array.isArray(
+            incoming
+          )
+        ){
+
+          throw new Error();
+
+        }
+
+
+
+        const add =
+          confirm(
+            "OK = 現在の単語帳に追加\n\nキャンセル = 現在の単語帳をバックアップ内容で置き換え"
+          );
+
+
+
+        if(add){
+
+          const existingIds =
+            new Set(
+              words.map(
+                word =>
+                  word.id
+              )
+            );
+
+
+
+          const normalized =
+            incoming.map(
+              word => ({
+
+                ...word,
+
+                id:
+                  word.id
+                  &&
+                  !existingIds
+                    .has(
+                      word.id
+                    )
+                  ?
+                  word.id
+                  :
+                  uid()
+
+              })
+            );
+
+
+
+          words = [
+            ...words,
+            ...normalized
+          ];
+
+        }
+
+
+
+        else{
+
+          const sure =
+            confirm(
+              "現在の単語帳を置き換えます。よろしいですか？"
+            );
+
+
+
+          if(!sure){
+            return;
+          }
+
+
+
+          words =
+            incoming.map(
+              word => ({
+
+                ...word,
+
+                id:
+                  word.id
+                  ||
+                  uid()
+
+              })
+            );
+
+        }
+
+
+
+        saveWords();
+
+
+
+        $("importFile").value =
+          "";
+
+
+
+        alert(
+          "バックアップを読み込みました。"
         );
 
+
+
+        switchTab(
+          "words"
+        );
+
+      }
+
+
+
+      catch(error){
+
+        console.error(
+          error
+        );
+
+
+        alert(
+          "正しいバックアップJSONではありません。"
+        );
+
+      }
+
     }
+  );
 
-
-    saveWords();
-
-
-    $("importFile").value =
-      "";
-
-
-    alert(
-      "バックアップを読み込みました。"
-    );
-
-
-    switchTab(
-      "words"
-    );
-
-  }
-
-  catch{
-
-    alert(
-      "正しいバックアップJSONではありません。"
-    );
-
-  }
-
-});
 
 
 renderWords();
 
 })();
+
 </script>
 
 </body>
