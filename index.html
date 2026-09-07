@@ -1,17 +1,18 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#111827" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#111827">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
   <title>My English Words</title>
 
   <style>
     :root{
       --bg:#f5f7fb;
-      --card:#fff;
+      --card:#ffffff;
       --text:#111827;
       --muted:#6b7280;
       --line:#e5e7eb;
@@ -36,40 +37,45 @@
       position:sticky;
       top:0;
       z-index:10;
-      background:rgba(245,247,251,.94);
+      background:rgba(245,247,251,.95);
       backdrop-filter:blur(12px);
       border-bottom:1px solid var(--line);
-      padding:14px 16px;
+      padding:18px 16px;
     }
 
     header h1{
       margin:0;
-      font-size:20px;
+      font-size:22px;
     }
 
     main{
       max-width:760px;
       margin:0 auto;
-      padding:16px 16px 96px;
+      padding:16px 16px 100px;
     }
 
     .tabs{
       display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:8px;
-      margin-bottom:16px;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+      margin-bottom:18px;
     }
 
     button{
       appearance:none;
       border:0;
-      border-radius:12px;
-      padding:11px 13px;
-      font-size:15px;
-      font-weight:700;
+      border-radius:14px;
+      padding:13px 14px;
+      font-size:16px;
+      font-weight:750;
       background:#e5e7eb;
       color:#111827;
       cursor:pointer;
+    }
+
+    .tab{
+      min-height:60px;
+      font-size:18px;
     }
 
     button.primary{
@@ -94,23 +100,23 @@
 
     .tab.active{
       background:var(--primary);
-      color:#fff;
+      color:white;
     }
 
     .card{
       background:var(--card);
       border:1px solid var(--line);
-      border-radius:16px;
-      padding:16px;
-      margin-bottom:12px;
+      border-radius:20px;
+      padding:18px;
+      margin-bottom:14px;
       box-shadow:0 2px 8px rgba(0,0,0,.03);
     }
 
     label{
       display:block;
-      font-size:13px;
+      font-size:15px;
       font-weight:800;
-      margin:12px 0 6px;
+      margin:18px 0 8px;
     }
 
     input,
@@ -118,16 +124,17 @@
     select{
       width:100%;
       border:1px solid #d1d5db;
-      border-radius:10px;
-      padding:11px 12px;
-      font-size:16px;
+      border-radius:13px;
+      padding:13px 14px;
+      font-size:17px;
       background:#fff;
       color:#111827;
     }
 
     textarea{
-      min-height:82px;
+      min-height:100px;
       resize:vertical;
+      font-family:inherit;
     }
 
     .grid2{
@@ -138,7 +145,7 @@
 
     .row{
       display:flex;
-      gap:8px;
+      gap:10px;
       align-items:center;
       flex-wrap:wrap;
     }
@@ -146,41 +153,41 @@
     .space{
       display:flex;
       justify-content:space-between;
-      gap:12px;
+      gap:14px;
       align-items:flex-start;
     }
 
     .muted{
       color:var(--muted);
-      font-size:13px;
+      font-size:14px;
       line-height:1.5;
     }
 
     .word{
-      font-size:24px;
+      font-size:29px;
       font-weight:850;
       word-break:break-word;
     }
 
     .meaning{
-      font-size:16px;
-      margin-top:4px;
+      font-size:18px;
+      margin-top:6px;
       white-space:pre-wrap;
     }
 
     .small{
-      font-size:14px;
+      font-size:16px;
       line-height:1.6;
       white-space:pre-wrap;
     }
 
     .pill{
       display:inline-block;
-      padding:4px 8px;
+      padding:5px 9px;
       border-radius:999px;
       background:var(--soft);
       color:#3730a3;
-      font-size:12px;
+      font-size:13px;
       font-weight:800;
     }
 
@@ -189,16 +196,16 @@
     }
 
     .quiz-word{
-      font-size:31px;
+      font-size:32px;
       font-weight:850;
       text-align:center;
-      margin:24px 0;
+      margin:28px 0;
       white-space:pre-wrap;
       word-break:break-word;
     }
 
     .answer{
-      font-size:18px;
+      font-size:19px;
       line-height:1.7;
       white-space:pre-wrap;
     }
@@ -206,52 +213,49 @@
     .empty{
       text-align:center;
       color:var(--muted);
-      padding:32px 12px;
+      padding:40px 12px;
+      font-size:17px;
     }
 
     .speaker{
-      padding:8px 10px;
-      min-width:44px;
+      padding:10px 12px;
+      min-width:48px;
     }
 
     .stats{
       display:grid;
       grid-template-columns:repeat(3,1fr);
       gap:8px;
-      margin-top:12px;
+      margin-top:16px;
     }
 
     .stat{
       background:#f9fafb;
-      border-radius:12px;
-      padding:10px;
+      border-radius:14px;
+      padding:14px 8px;
       text-align:center;
     }
 
     .stat strong{
       display:block;
-      font-size:18px;
+      font-size:21px;
     }
 
     .section-title{
-      font-size:18px;
+      font-size:22px;
       font-weight:850;
-      margin-bottom:4px;
+      margin-bottom:6px;
     }
 
     .divider{
       height:1px;
       background:var(--line);
-      margin:16px 0;
+      margin:18px 0;
     }
 
     @media(max-width:560px){
       .grid2{
         grid-template-columns:1fr;
-      }
-
-      .tabs{
-        grid-template-columns:repeat(2,1fr);
       }
     }
   </style>
@@ -266,11 +270,25 @@
 <main>
 
   <div class="tabs">
-    <button class="tab active" data-tab="words">単語帳</button>
-    <button class="tab" data-tab="add">追加</button>
-    <button class="tab" data-tab="quiz">テスト</button>
-    <button class="tab" data-tab="backup">バックアップ</button>
+    <button class="tab active" data-tab="words">
+      単語帳
+    </button>
+
+    <button class="tab" data-tab="add">
+      追加
+    </button>
+
+    <button class="tab" data-tab="quiz">
+      テスト
+    </button>
+
+    <button class="tab" data-tab="backup">
+      バックアップ
+    </button>
   </div>
+
+
+  <!-- 単語帳 -->
 
   <section id="wordsSection">
 
@@ -279,16 +297,29 @@
       <div class="space">
 
         <div>
-          <div class="section-title">登録単語</div>
+          <div class="section-title">
+            登録単語
+          </div>
+
           <div class="muted">
             <span id="wordCount">0</span> words
           </div>
         </div>
 
         <select id="filterMode" style="width:auto">
-          <option value="all">すべて</option>
-          <option value="wrong">間違えた単語</option>
-          <option value="weak">苦手順</option>
+
+          <option value="all">
+            すべて
+          </option>
+
+          <option value="wrong">
+            間違えた単語
+          </option>
+
+          <option value="weak">
+            苦手順
+          </option>
+
         </select>
 
       </div>
@@ -298,6 +329,9 @@
     <div id="wordList"></div>
 
   </section>
+
+
+  <!-- 追加 -->
 
   <section id="addSection" class="hidden">
 
@@ -313,44 +347,78 @@
 
       <input type="hidden" id="editId">
 
-      <label>英単語・フレーズ</label>
+
+      <!-- 1 英語 -->
+
+      <label>
+        英単語・フレーズ
+      </label>
+
       <input
         id="word"
         autocomplete="off"
+        autocapitalize="none"
         placeholder="例: impact"
       >
 
-      <label>意味</label>
-      <textarea
-        id="meaning"
-        placeholder="例: 影響、衝撃 / 影響を与える"
-      ></textarea>
 
-      <label>例文</label>
+      <!-- 2 英語 -->
+
+      <label>
+        例文
+      </label>
+
       <textarea
         id="example"
         placeholder="The new policy had a big impact on the company."
       ></textarea>
 
-      <label>例文の日本語訳</label>
+
+      <!-- 3 日本語 -->
+
+      <label>
+        意味
+      </label>
+
+      <textarea
+        id="meaning"
+        placeholder="例: 影響、衝撃 / 影響を与える"
+      ></textarea>
+
+
+      <!-- 4 日本語 -->
+
+      <label>
+        例文の日本語訳
+      </label>
+
       <textarea
         id="translation"
         placeholder="その新しい方針は会社に大きな影響を与えた。"
       ></textarea>
 
-      <label>使い方メモ</label>
+
+      <label>
+        使い方メモ
+      </label>
+
       <textarea
         id="usage"
         placeholder="例: impact on ～ で「～への影響」"
       ></textarea>
 
-      <label>自由メモ</label>
+
+      <label>
+        自由メモ
+      </label>
+
       <textarea
         id="memo"
         placeholder="自分の覚え方、ニュアンス、気づきなど"
       ></textarea>
 
-      <div class="row" style="margin-top:14px">
+
+      <div class="row" style="margin-top:18px">
 
         <button class="primary" id="saveBtn">
           保存
@@ -366,6 +434,9 @@
 
   </section>
 
+
+  <!-- テスト -->
+
   <section id="quizSection" class="hidden">
 
     <div class="card">
@@ -378,51 +449,66 @@
 
         <div>
 
-          <label>テスト形式</label>
+          <label>
+            テスト形式
+          </label>
 
           <select id="quizMode">
+
             <option value="en-ja">
               英語 → 日本語
             </option>
+
             <option value="ja-en">
               日本語 → 英語
             </option>
+
             <option value="audio">
               音声 → 単語
             </option>
+
           </select>
 
         </div>
 
+
         <div>
 
-          <label>出題範囲</label>
+          <label>
+            出題範囲
+          </label>
 
           <select id="quizScope">
+
             <option value="all">
               すべて
             </option>
+
             <option value="wrong">
               間違えた単語のみ
             </option>
+
             <option value="weak">
               苦手優先
             </option>
+
           </select>
 
         </div>
 
       </div>
 
+
       <button
         class="primary"
         id="startQuiz"
-        style="margin-top:14px;width:100%"
+        style="margin-top:18px;width:100%"
       >
         テスト開始
       </button>
 
     </div>
+
 
     <div id="quizCard" class="card hidden">
 
@@ -449,6 +535,7 @@
         答えを見る
       </button>
 
+
       <div
         id="answerBox"
         class="hidden"
@@ -463,7 +550,7 @@
 
         <div
           class="row"
-          style="margin-top:16px"
+          style="margin-top:18px"
         >
 
           <button
@@ -486,12 +573,16 @@
 
     </div>
 
+
     <div
       id="quizResult"
       class="card hidden"
     ></div>
 
   </section>
+
+
+  <!-- バックアップ -->
 
   <section
     id="backupSection"
@@ -505,8 +596,10 @@
       </div>
 
       <div class="muted">
-        Safariのデータ削除や機種変更に備えて保存できます。
+        Safariのデータ削除や機種変更に備えて、
+        単語帳をファイルとして保存できます。
       </div>
+
 
       <label>
         バックアップを書き出す
@@ -520,7 +613,9 @@
         JSONファイルを保存
       </button>
 
+
       <div class="divider"></div>
+
 
       <label>
         バックアップを読み込む
@@ -534,17 +629,18 @@
 
       <button
         id="importBtn"
-        style="width:100%;margin-top:10px"
+        style="width:100%;margin-top:12px"
       >
         選んだバックアップを復元
       </button>
 
+
       <div
         class="muted"
-        style="margin-top:10px"
+        style="margin-top:12px"
       >
         現在の単語帳に追加するか、
-        全部置き換えるか選べます。
+        バックアップ内容ですべて置き換えるか選べます。
       </div>
 
     </div>
@@ -553,46 +649,114 @@
 
 </main>
 
+
 <script>
 
 (() => {
 
   "use strict";
 
+
+  /*
+   * 保存キーは変更しない
+   * これが今あるデータを維持するために重要
+   */
+
   const STORAGE_KEY =
     "myEnglishWords_v2";
 
-  let words = loadWords();
+
+  /*
+   * 古いバージョンが残っている場合も読み込む
+   */
+
+  const LEGACY_KEYS = [
+    "myEnglishWords",
+    "myEnglishWords_v1"
+  ];
+
+
+  const $ = id =>
+    document.getElementById(id);
+
+
+  let words =
+    loadWords();
+
 
   let quizItems = [];
   let quizIndex = 0;
   let quizCorrect = 0;
 
-  const $ = id =>
-    document.getElementById(id);
+
 
   function loadWords(){
 
     try{
 
-      const saved =
-        JSON.parse(
-          localStorage.getItem(
-            STORAGE_KEY
-          ) || "[]"
+      const current =
+        localStorage.getItem(
+          STORAGE_KEY
         );
 
-      return Array.isArray(saved)
-        ? saved
-        : [];
+      if(current){
 
-    }catch{
+        const parsed =
+          JSON.parse(current);
 
-      return [];
+        if(Array.isArray(parsed)){
+          return parsed;
+        }
+
+      }
+
+
+      for(
+        const key
+        of LEGACY_KEYS
+      ){
+
+        const old =
+          localStorage.getItem(
+            key
+          );
+
+        if(!old){
+          continue;
+        }
+
+        const parsed =
+          JSON.parse(old);
+
+        if(
+          Array.isArray(parsed)
+        ){
+
+          localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(parsed)
+          );
+
+          return parsed;
+
+        }
+
+      }
+
+    }catch(error){
+
+      console.error(
+        "データ読込エラー",
+        error
+      );
 
     }
 
+    return [];
+
   }
+
+
 
   function saveWords(){
 
@@ -604,6 +768,8 @@
     renderWords();
 
   }
+
+
 
   function uid(){
 
@@ -619,114 +785,180 @@
 
   }
 
+
+
   function speak(text){
 
+    if(!text){
+      return;
+    }
+
+
     if(
-      !text ||
-      !("speechSynthesis" in window)
+      !(
+        "speechSynthesis"
+        in window
+      )
     ){
 
       alert(
-        "このブラウザでは音声読み上げを利用できません。"
+        "この端末では音声読み上げを利用できません。"
       );
 
       return;
 
     }
 
-    window.speechSynthesis.cancel();
+
+    window
+      .speechSynthesis
+      .cancel();
+
 
     const utterance =
       new SpeechSynthesisUtterance(
         text
       );
 
-    utterance.lang = "en-US";
 
-    utterance.rate = 0.85;
+    utterance.lang =
+      "en-US";
+
+
+    utterance.rate =
+      0.85;
+
 
     const voices =
-      window.speechSynthesis.getVoices();
+      window
+        .speechSynthesis
+        .getVoices();
+
 
     const preferred =
       voices.find(
-        v => v.lang === "en-US"
+        voice =>
+          voice.lang
+          ===
+          "en-US"
       )
       ||
       voices.find(
-        v =>
-          v.lang &&
-          v.lang.startsWith("en")
+        voice =>
+          voice.lang
+          &&
+          voice.lang
+            .startsWith("en")
       );
 
+
     if(preferred){
-      utterance.voice = preferred;
+
+      utterance.voice =
+        preferred;
+
     }
 
-    window.speechSynthesis.speak(
-      utterance
-    );
+
+    window
+      .speechSynthesis
+      .speak(
+        utterance
+      );
 
   }
 
-  window.speak = speak;
+
 
   function switchTab(name){
 
     document
       .querySelectorAll(".tab")
-      .forEach(btn => {
+      .forEach(
+        button => {
 
-        btn.classList.toggle(
-          "active",
-          btn.dataset.tab === name
-        );
+          button
+            .classList
+            .toggle(
+              "active",
+              button.dataset.tab
+              ===
+              name
+            );
 
-      });
+        }
+      );
+
 
     $("wordsSection")
-      .classList.toggle(
+      .classList
+      .toggle(
         "hidden",
         name !== "words"
       );
 
+
     $("addSection")
-      .classList.toggle(
+      .classList
+      .toggle(
         "hidden",
         name !== "add"
       );
 
+
     $("quizSection")
-      .classList.toggle(
+      .classList
+      .toggle(
         "hidden",
         name !== "quiz"
       );
 
+
     $("backupSection")
-      .classList.toggle(
+      .classList
+      .toggle(
         "hidden",
         name !== "backup"
       );
 
-    if(name === "words"){
+
+    if(
+      name
+      ===
+      "words"
+    ){
+
       renderWords();
+
     }
 
   }
 
+
+
   document
     .querySelectorAll(".tab")
-    .forEach(btn => {
+    .forEach(
+      button => {
 
-      btn.addEventListener(
-        "click",
-        () =>
-          switchTab(
-            btn.dataset.tab
-          )
-      );
+        button
+          .addEventListener(
+            "click",
+            () => {
 
-    });
+              switchTab(
+                button
+                  .dataset
+                  .tab
+              );
+
+            }
+          );
+
+      }
+    );
+
+
 
   function makeText(
     tag,
@@ -734,55 +966,94 @@
     className = ""
   ){
 
-    const el =
-      document.createElement(tag);
+    const element =
+      document
+        .createElement(tag);
+
 
     if(className){
-      el.className = className;
+
+      element.className =
+        className;
+
     }
 
-    el.textContent = text;
 
-    return el;
+    element.textContent =
+      text || "";
+
+
+    return element;
 
   }
 
-  function weakScore(w){
+
+
+  function weakScore(word){
 
     const wrong =
       Number(
-        w.wrongCount || 0
+        word.wrongCount
+        ||
+        0
       );
+
 
     const correct =
       Number(
-        w.correctCount || 0
+        word.correctCount
+        ||
+        0
       );
 
-    return wrong * 3 - correct;
+
+    return (
+      wrong * 3
+      -
+      correct
+    );
 
   }
+
+
 
   function renderWords(){
 
     const mode =
-      $("filterMode").value;
+      $("filterMode")
+        .value;
 
-    let list = [...words];
 
-    if(mode === "wrong"){
+    let list =
+      [...words];
+
+
+    if(
+      mode
+      ===
+      "wrong"
+    ){
 
       list =
         list.filter(
-          w =>
+          word =>
             Number(
-              w.wrongCount || 0
-            ) > 0
+              word.wrongCount
+              ||
+              0
+            )
+            >
+            0
         );
 
     }
 
-    if(mode === "weak"){
+
+    if(
+      mode
+      ===
+      "weak"
+    ){
 
       list.sort(
         (a,b) =>
@@ -797,339 +1068,508 @@
 
     }
 
+
     $("wordCount")
       .textContent =
-      String(words.length);
+      String(
+        words.length
+      );
+
 
     const container =
       $("wordList");
 
-    container.innerHTML = "";
 
-    if(!list.length){
+    container.innerHTML =
+      "";
 
-      container.appendChild(
-        makeText(
-          "div",
-          "まだ単語がありません。",
-          "empty"
-        )
-      );
+
+    if(
+      list.length
+      ===
+      0
+    ){
+
+      container
+        .appendChild(
+          makeText(
+            "div",
+            "まだ単語がありません。",
+            "empty"
+          )
+        );
 
       return;
 
     }
 
-    list.forEach(w => {
 
-      const card =
-        document.createElement(
-          "div"
-        );
 
-      card.className = "card";
+    list.forEach(
+      wordData => {
 
-      const top =
-        document.createElement(
-          "div"
-        );
-
-      top.className = "space";
-
-      const left =
-        document.createElement(
-          "div"
-        );
-
-      left.appendChild(
-        makeText(
-          "div",
-          w.word || "",
-          "word"
-        )
-      );
-
-      left.appendChild(
-        makeText(
-          "div",
-          w.meaning || "",
-          "meaning"
-        )
-      );
-
-      const speaker =
-        makeText(
-          "button",
-          "🔊",
-          "speaker"
-        );
-
-      speaker.addEventListener(
-        "click",
-        () => speak(w.word)
-      );
-
-      top.append(
-        left,
-        speaker
-      );
-
-      card.appendChild(top);
-
-      if(w.example){
-
-        const ex =
-          document.createElement(
-            "div"
-          );
-
-        ex.style.marginTop =
-          "14px";
-
-        ex.appendChild(
-          makeText(
-            "b",
-            "例文"
-          )
-        );
-
-        const text =
-          makeText(
-            "div",
-            w.example,
-            "small"
-          );
-
-        text.style.marginTop =
-          "4px";
-
-        ex.appendChild(text);
-
-        const exSpeaker =
-          makeText(
-            "button",
-            "🔊 例文を再生",
-            "speaker"
-          );
-
-        exSpeaker.style.marginTop =
-          "8px";
-
-        exSpeaker.addEventListener(
-          "click",
-          () =>
-            speak(w.example)
-        );
-
-        ex.appendChild(
-          exSpeaker
-        );
-
-        card.appendChild(ex);
-
-      }
-
-      if(w.translation){
-
-        const tr =
-          makeText(
-            "div",
-            w.translation,
-            "muted"
-          );
-
-        tr.style.marginTop =
-          "6px";
-
-        card.appendChild(tr);
-
-      }
-
-      if(w.usage){
-
-        const box =
-          document.createElement(
-            "div"
-          );
-
-        box.style.marginTop =
-          "12px";
-
-        box.appendChild(
-          makeText(
-            "span",
-            "使い方",
-            "pill"
-          )
-        );
-
-        const body =
-          makeText(
-            "div",
-            w.usage,
-            "small"
-          );
-
-        body.style.marginTop =
-          "6px";
-
-        box.appendChild(body);
-
-        card.appendChild(box);
-
-      }
-
-      if(w.memo){
-
-        const box =
-          document.createElement(
-            "div"
-          );
-
-        box.style.marginTop =
-          "10px";
-
-        box.appendChild(
-          makeText(
-            "span",
-            "メモ",
-            "pill"
-          )
-        );
-
-        const body =
-          makeText(
-            "div",
-            w.memo,
-            "small"
-          );
-
-        body.style.marginTop =
-          "6px";
-
-        box.appendChild(body);
-
-        card.appendChild(box);
-
-      }
-
-      const stats =
-        document.createElement(
-          "div"
-        );
-
-      stats.className = "stats";
-
-      const total =
-        Number(
-          w.correctCount || 0
-        )
-        +
-        Number(
-          w.wrongCount || 0
-        );
-
-      [
-        [
-          "正解",
-          Number(
-            w.correctCount || 0
-          )
-        ],
-        [
-          "間違い",
-          Number(
-            w.wrongCount || 0
-          )
-        ],
-        [
-          "回答",
-          total
-        ]
-      ]
-      .forEach(
-        ([label,value]) => {
-
-          const s =
-            document.createElement(
+        const card =
+          document
+            .createElement(
               "div"
             );
 
-          s.className = "stat";
 
-          s.appendChild(
-            makeText(
-              "strong",
-              String(value)
-            )
+        card.className =
+          "card";
+
+
+        const top =
+          document
+            .createElement(
+              "div"
+            );
+
+
+        top.className =
+          "space";
+
+
+        const left =
+          document
+            .createElement(
+              "div"
+            );
+
+
+        left.appendChild(
+          makeText(
+            "div",
+            wordData.word,
+            "word"
+          )
+        );
+
+
+        left.appendChild(
+          makeText(
+            "div",
+            wordData.meaning,
+            "meaning"
+          )
+        );
+
+
+        const wordSpeaker =
+          makeText(
+            "button",
+            "🔊",
+            "speaker"
           );
 
-          s.appendChild(
-            makeText(
-              "span",
-              label,
-              "muted"
-            )
+
+        wordSpeaker
+          .addEventListener(
+            "click",
+            () =>
+              speak(
+                wordData.word
+              )
           );
 
-          stats.appendChild(s);
+
+        top.append(
+          left,
+          wordSpeaker
+        );
+
+
+        card.appendChild(
+          top
+        );
+
+
+
+        if(
+          wordData.example
+        ){
+
+          const exampleBox =
+            document
+              .createElement(
+                "div"
+              );
+
+
+          exampleBox
+            .style
+            .marginTop =
+            "18px";
+
+
+          exampleBox
+            .appendChild(
+              makeText(
+                "b",
+                "例文"
+              )
+            );
+
+
+          const example =
+            makeText(
+              "div",
+              wordData.example,
+              "small"
+            );
+
+
+          example.style.marginTop =
+            "6px";
+
+
+          exampleBox
+            .appendChild(
+              example
+            );
+
+
+          const exampleSpeaker =
+            makeText(
+              "button",
+              "🔊 例文を再生",
+              "speaker"
+            );
+
+
+          exampleSpeaker
+            .style
+            .marginTop =
+            "10px";
+
+
+          exampleSpeaker
+            .addEventListener(
+              "click",
+              () =>
+                speak(
+                  wordData.example
+                )
+            );
+
+
+          exampleBox
+            .appendChild(
+              exampleSpeaker
+            );
+
+
+          card
+            .appendChild(
+              exampleBox
+            );
 
         }
-      );
 
-      card.appendChild(stats);
 
-      const actions =
-        document.createElement(
-          "div"
+
+        if(
+          wordData.translation
+        ){
+
+          const translation =
+            makeText(
+              "div",
+              wordData.translation,
+              "muted"
+            );
+
+
+          translation
+            .style
+            .marginTop =
+            "8px";
+
+
+          card
+            .appendChild(
+              translation
+            );
+
+        }
+
+
+
+        if(
+          wordData.usage
+        ){
+
+          const usageBox =
+            document
+              .createElement(
+                "div"
+              );
+
+
+          usageBox
+            .style
+            .marginTop =
+            "16px";
+
+
+          usageBox
+            .appendChild(
+              makeText(
+                "span",
+                "使い方",
+                "pill"
+              )
+            );
+
+
+          const usage =
+            makeText(
+              "div",
+              wordData.usage,
+              "small"
+            );
+
+
+          usage.style.marginTop =
+            "8px";
+
+
+          usageBox
+            .appendChild(
+              usage
+            );
+
+
+          card
+            .appendChild(
+              usageBox
+            );
+
+        }
+
+
+
+        if(
+          wordData.memo
+        ){
+
+          const memoBox =
+            document
+              .createElement(
+                "div"
+              );
+
+
+          memoBox
+            .style
+            .marginTop =
+            "14px";
+
+
+          memoBox
+            .appendChild(
+              makeText(
+                "span",
+                "メモ",
+                "pill"
+              )
+            );
+
+
+          const memo =
+            makeText(
+              "div",
+              wordData.memo,
+              "small"
+            );
+
+
+          memo.style.marginTop =
+            "8px";
+
+
+          memoBox
+            .appendChild(
+              memo
+            );
+
+
+          card
+            .appendChild(
+              memoBox
+            );
+
+        }
+
+
+
+        const stats =
+          document
+            .createElement(
+              "div"
+            );
+
+
+        stats.className =
+          "stats";
+
+
+        const correct =
+          Number(
+            wordData.correctCount
+            ||
+            0
+          );
+
+
+        const wrong =
+          Number(
+            wordData.wrongCount
+            ||
+            0
+          );
+
+
+        const total =
+          correct
+          +
+          wrong;
+
+
+        [
+          [
+            "正解",
+            correct
+          ],
+          [
+            "間違い",
+            wrong
+          ],
+          [
+            "回答",
+            total
+          ]
+        ]
+        .forEach(
+          item => {
+
+            const stat =
+              document
+                .createElement(
+                  "div"
+                );
+
+
+            stat.className =
+              "stat";
+
+
+            stat.appendChild(
+              makeText(
+                "strong",
+                String(
+                  item[1]
+                )
+              )
+            );
+
+
+            stat.appendChild(
+              makeText(
+                "span",
+                item[0],
+                "muted"
+              )
+            );
+
+
+            stats
+              .appendChild(
+                stat
+              );
+
+          }
         );
 
-      actions.className = "row";
 
-      actions.style.marginTop =
-        "12px";
-
-      const edit =
-        makeText(
-          "button",
-          "編集"
+        card.appendChild(
+          stats
         );
 
-      edit.addEventListener(
-        "click",
-        () =>
-          editWord(w.id)
-      );
 
-      const del =
-        makeText(
-          "button",
-          "削除",
-          "danger"
+
+        const actions =
+          document
+            .createElement(
+              "div"
+            );
+
+
+        actions.className =
+          "row";
+
+
+        actions.style.marginTop =
+          "16px";
+
+
+        const editButton =
+          makeText(
+            "button",
+            "編集"
+          );
+
+
+        editButton
+          .addEventListener(
+            "click",
+            () =>
+              editWord(
+                wordData.id
+              )
+          );
+
+
+        const deleteButton =
+          makeText(
+            "button",
+            "削除",
+            "danger"
+          );
+
+
+        deleteButton
+          .addEventListener(
+            "click",
+            () =>
+              deleteWord(
+                wordData.id
+              )
+          );
+
+
+        actions.append(
+          editButton,
+          deleteButton
         );
 
-      del.addEventListener(
-        "click",
-        () =>
-          deleteWord(w.id)
-      );
 
-      actions.append(
-        edit,
-        del
-      );
+        card.appendChild(
+          actions
+        );
 
-      card.appendChild(
-        actions
-      );
 
-      container.appendChild(
-        card
-      );
+        container
+          .appendChild(
+            card
+          );
 
-    });
+      }
+    );
 
   }
+
+
 
   $("filterMode")
     .addEventListener(
@@ -1137,32 +1577,43 @@
       renderWords
     );
 
+
+
   function clearForm(){
 
     [
       "editId",
       "word",
-      "meaning",
       "example",
+      "meaning",
       "translation",
       "usage",
       "memo"
     ]
     .forEach(
-      id =>
-        $(id).value = ""
+      id => {
+
+        $(id).value =
+          "";
+
+      }
     );
+
 
     $("formTitle")
       .textContent =
       "単語を追加";
 
+
     $("cancelEdit")
-      .classList.add(
+      .classList
+      .add(
         "hidden"
       );
 
   }
+
+
 
   $("saveBtn")
     .addEventListener(
@@ -1174,13 +1625,16 @@
             .value
             .trim();
 
+
         const meaning =
           $("meaning")
             .value
             .trim();
 
+
         if(
-          !word ||
+          !word
+          ||
           !meaning
         ){
 
@@ -1192,16 +1646,17 @@
 
         }
 
+
         const data = {
 
           word,
-
-          meaning,
 
           example:
             $("example")
               .value
               .trim(),
+
+          meaning,
 
           translation:
             $("translation")
@@ -1223,18 +1678,29 @@
 
         };
 
+
         const id =
-          $("editId").value;
+          $("editId")
+            .value;
+
 
         if(id){
 
           const index =
-            words.findIndex(
-              w =>
-                w.id === id
-            );
+            words
+              .findIndex(
+                item =>
+                  item.id
+                  ===
+                  id
+              );
 
-          if(index !== -1){
+
+          if(
+            index
+            !==
+            -1
+          ){
 
             words[index] = {
               ...words[index],
@@ -1262,6 +1728,7 @@
 
         }
 
+
         saveWords();
 
         clearForm();
@@ -1270,8 +1737,16 @@
           "words"
         );
 
+
+        window.scrollTo({
+          top:0,
+          behavior:"smooth"
+        });
+
       }
     );
+
+
 
   $("cancelEdit")
     .addEventListener(
@@ -1287,42 +1762,71 @@
       }
     );
 
+
+
   function editWord(id){
 
-    const w =
-      words.find(
-        x =>
-          x.id === id
-      );
+    const wordData =
+      words
+        .find(
+          item =>
+            item.id
+            ===
+            id
+        );
 
-    if(!w){
+
+    if(
+      !wordData
+    ){
       return;
     }
 
+
     $("editId").value =
-      w.id;
+      wordData.id;
+
 
     $("word").value =
-      w.word || "";
+      wordData.word
+      ||
+      "";
 
-    $("meaning").value =
-      w.meaning || "";
 
     $("example").value =
-      w.example || "";
+      wordData.example
+      ||
+      "";
+
+
+    $("meaning").value =
+      wordData.meaning
+      ||
+      "";
+
 
     $("translation").value =
-      w.translation || "";
+      wordData.translation
+      ||
+      "";
+
 
     $("usage").value =
-      w.usage || "";
+      wordData.usage
+      ||
+      "";
+
 
     $("memo").value =
-      w.memo || "";
+      wordData.memo
+      ||
+      "";
+
 
     $("formTitle")
       .textContent =
       "単語を編集";
+
 
     $("cancelEdit")
       .classList
@@ -1330,7 +1834,11 @@
         "hidden"
       );
 
-    switchTab("add");
+
+    switchTab(
+      "add"
+    );
+
 
     window.scrollTo({
       top:0,
@@ -1338,6 +1846,8 @@
     });
 
   }
+
+
 
   function deleteWord(id){
 
@@ -1349,68 +1859,96 @@
       return;
     }
 
+
     words =
       words.filter(
-        w =>
-          w.id !== id
+        word =>
+          word.id
+          !==
+          id
       );
+
 
     saveWords();
 
   }
 
+
+
   function weightedWeakPool(
     source
   ){
 
-    const result = [];
+    const result =
+      [];
 
-    source.forEach(w => {
 
-      const wrong =
-        Number(
-          w.wrongCount || 0
-        );
+    source.forEach(
+      word => {
 
-      const correct =
-        Number(
-          w.correctCount || 0
-        );
+        const wrong =
+          Number(
+            word.wrongCount
+            ||
+            0
+          );
 
-      const weight =
-        Math.max(
-          1,
-          1
-          +
-          wrong * 2
-          -
-          Math.floor(
-            correct / 3
-          )
-        );
 
-      for(
-        let i = 0;
-        i <
-        Math.min(
-          weight,
-          6
-        );
-        i++
-      ){
+        const correct =
+          Number(
+            word.correctCount
+            ||
+            0
+          );
 
-        result.push(w);
+
+        const weight =
+          Math.max(
+            1,
+            1
+            +
+            wrong * 2
+            -
+            Math.floor(
+              correct / 3
+            )
+          );
+
+
+        const maxWeight =
+          Math.min(
+            weight,
+            6
+          );
+
+
+        for(
+          let i = 0;
+          i < maxWeight;
+          i++
+        ){
+
+          result.push(
+            word
+          );
+
+        }
 
       }
-
-    });
-
-    return result.sort(
-      () =>
-        Math.random() - 0.5
     );
 
+
+    return result
+      .sort(
+        () =>
+          Math.random()
+          -
+          0.5
+      );
+
   }
+
+
 
   $("startQuiz")
     .addEventListener(
@@ -1421,25 +1959,36 @@
           $("quizScope")
             .value;
 
+
         let pool =
           [...words];
 
+
         if(
-          scope === "wrong"
+          scope
+          ===
+          "wrong"
         ){
 
           pool =
             pool.filter(
-              w =>
+              word =>
                 Number(
-                  w.wrongCount || 0
-                ) > 0
+                  word.wrongCount
+                  ||
+                  0
+                )
+                >
+                0
             );
 
         }
 
+
         if(
-          scope === "weak"
+          scope
+          ===
+          "weak"
         ){
 
           pool =
@@ -1459,8 +2008,11 @@
 
         }
 
+
         if(
-          !pool.length
+          pool.length
+          ===
+          0
         ){
 
           alert(
@@ -1471,11 +2023,18 @@
 
         }
 
-        quizItems = pool;
 
-        quizIndex = 0;
+        quizItems =
+          pool;
 
-        quizCorrect = 0;
+
+        quizIndex =
+          0;
+
+
+        quizCorrect =
+          0;
+
 
         $("quizResult")
           .classList
@@ -1483,91 +2042,146 @@
             "hidden"
           );
 
+
         $("quizCard")
           .classList
           .remove(
             "hidden"
           );
 
+
         showQuestion();
 
       }
     );
 
+
+
   function setAnswerContent(
-    w,
+    wordData,
     mode
   ){
 
     const box =
       $("quizAnswer");
 
-    box.innerHTML = "";
+
+    box.innerHTML =
+      "";
+
+
+    let answer;
+
+
+    if(
+      mode
+      ===
+      "en-ja"
+    ){
+
+      answer =
+        wordData.meaning;
+
+    }else{
+
+      answer =
+        wordData.word;
+
+    }
+
 
     const main =
       makeText(
         "div",
-        mode === "en-ja"
-          ? w.meaning
-          : w.word
+        answer
       );
+
 
     main.style.fontWeight =
       "800";
 
-    box.appendChild(main);
 
-    if(w.example){
+    box.appendChild(
+      main
+    );
 
-      const ex =
+
+
+    if(
+      wordData.example
+    ){
+
+      const example =
         makeText(
           "div",
-          w.example,
+          wordData.example,
           "small"
         );
 
-      ex.style.marginTop =
-        "14px";
 
-      box.appendChild(ex);
+      example.style.marginTop =
+        "16px";
+
+
+      box.appendChild(
+        example
+      );
 
     }
 
-    if(w.translation){
 
-      const tr =
+
+    if(
+      wordData.translation
+    ){
+
+      const translation =
         makeText(
           "div",
-          w.translation,
+          wordData.translation,
           "muted"
         );
 
-      tr.style.marginTop =
-        "5px";
 
-      box.appendChild(tr);
+      translation.style.marginTop =
+        "6px";
+
+
+      box.appendChild(
+        translation
+      );
 
     }
 
-    if(w.usage){
 
-      const us =
+
+    if(
+      wordData.usage
+    ){
+
+      const usage =
         makeText(
           "div",
           "使い方: "
           +
-          w.usage,
+          wordData.usage,
           "small"
         );
 
-      us.style.marginTop =
-        "12px";
 
-      box.appendChild(us);
+      usage.style.marginTop =
+        "14px";
+
+
+      box.appendChild(
+        usage
+      );
 
     }
 
   }
+
+
 
   function showQuestion(){
 
@@ -1583,14 +2197,18 @@
           "hidden"
         );
 
+
       $("quizResult")
         .classList
         .remove(
           "hidden"
         );
 
+
       $("quizResult")
-        .innerHTML = "";
+        .innerHTML =
+        "";
+
 
       $("quizResult")
         .appendChild(
@@ -1600,6 +2218,7 @@
             "section-title"
           )
         );
+
 
       $("quizResult")
         .appendChild(
@@ -1614,6 +2233,7 @@
           )
         );
 
+
       const rate =
         Math.round(
           (
@@ -1624,6 +2244,7 @@
           *
           100
         );
+
 
       $("quizResult")
         .appendChild(
@@ -1638,30 +2259,38 @@
           )
         );
 
+
       renderWords();
 
       return;
 
     }
 
-    const w =
+
+
+    const wordData =
       quizItems[
         quizIndex
       ];
+
 
     const mode =
       $("quizMode")
         .value;
 
+
     $("quizProgress")
       .textContent =
       (
-        quizIndex + 1
+        quizIndex
+        +
+        1
       )
       +
       " / "
       +
       quizItems.length;
+
 
     $("answerBox")
       .classList
@@ -1669,44 +2298,57 @@
         "hidden"
       );
 
+
     $("audioRow")
-      .innerHTML = "";
+      .innerHTML =
+      "";
+
+
 
     if(
-      mode === "en-ja"
+      mode
+      ===
+      "en-ja"
     ){
 
       $("quizPrompt")
         .textContent =
-        w.word;
+        wordData.word;
+
 
       setAnswerContent(
-        w,
+        wordData,
         mode
       );
 
     }
+
 
     else if(
-      mode === "ja-en"
+      mode
+      ===
+      "ja-en"
     ){
 
       $("quizPrompt")
         .textContent =
-        w.meaning;
+        wordData.meaning;
+
 
       setAnswerContent(
-        w,
+        wordData,
         mode
       );
 
     }
+
 
     else{
 
       $("quizPrompt")
         .textContent =
         "🔊 音声を聞いて答える";
+
 
       const play =
         makeText(
@@ -1715,31 +2357,41 @@
           "accent"
         );
 
+
       play.addEventListener(
         "click",
         () =>
-          speak(w.word)
+          speak(
+            wordData.word
+          )
       );
+
 
       $("audioRow")
         .appendChild(
           play
         );
 
+
       setAnswerContent(
-        w,
+        wordData,
         "audio"
       );
 
+
       setTimeout(
         () =>
-          speak(w.word),
+          speak(
+            wordData.word
+          ),
         250
       );
 
     }
 
   }
+
+
 
   $("showAnswer")
     .addEventListener(
@@ -1755,12 +2407,16 @@
       }
     );
 
+
+
   $("correctBtn")
     .addEventListener(
       "click",
       () =>
         grade(true)
     );
+
+
 
   $("wrongBtn")
     .addEventListener(
@@ -1769,6 +2425,8 @@
         grade(false)
     );
 
+
+
   function grade(ok){
 
     const current =
@@ -1776,12 +2434,15 @@
         quizIndex
       ];
 
+
     const real =
       words.find(
-        w =>
-          w.id ===
+        word =>
+          word.id
+          ===
           current.id
       );
+
 
     if(real){
 
@@ -1789,10 +2450,13 @@
 
         real.correctCount =
           Number(
-            real.correctCount || 0
+            real.correctCount
+            ||
+            0
           )
           +
           1;
+
 
         quizCorrect++;
 
@@ -1800,28 +2464,37 @@
 
         real.wrongCount =
           Number(
-            real.wrongCount || 0
+            real.wrongCount
+            ||
+            0
           )
           +
           1;
 
       }
 
+
       real.updatedAt =
         Date.now();
 
+
       localStorage.setItem(
         STORAGE_KEY,
-        JSON.stringify(words)
+        JSON.stringify(
+          words
+        )
       );
 
     }
+
 
     quizIndex++;
 
     showQuestion();
 
   }
+
+
 
   $("exportBtn")
     .addEventListener(
@@ -1843,6 +2516,7 @@
 
         };
 
+
         const blob =
           new Blob(
             [
@@ -1858,15 +2532,20 @@
             }
           );
 
-        const url =
-          URL.createObjectURL(
-            blob
-          );
 
-        const a =
-          document.createElement(
-            "a"
-          );
+        const url =
+          URL
+            .createObjectURL(
+              blob
+            );
+
+
+        const link =
+          document
+            .createElement(
+              "a"
+            );
+
 
         const date =
           new Date()
@@ -1876,32 +2555,43 @@
               10
             );
 
-        a.href = url;
 
-        a.download =
+        link.href =
+          url;
+
+
+        link.download =
           "english-words-backup-"
           +
           date
           +
           ".json";
 
+
         document.body
-          .appendChild(a);
+          .appendChild(
+            link
+          );
 
-        a.click();
 
-        a.remove();
+        link.click();
+
+        link.remove();
+
 
         setTimeout(
           () =>
-            URL.revokeObjectURL(
-              url
-            ),
+            URL
+              .revokeObjectURL(
+                url
+              ),
           1000
         );
 
       }
     );
+
+
 
   $("importBtn")
     .addEventListener(
@@ -1911,6 +2601,7 @@
         const file =
           $("importFile")
             .files?.[0];
+
 
         if(!file){
 
@@ -1922,13 +2613,18 @@
 
         }
 
+
         try{
 
           const text =
             await file.text();
 
+
           const parsed =
-            JSON.parse(text);
+            JSON.parse(
+              text
+            );
+
 
           const incoming =
             Array.isArray(
@@ -1939,6 +2635,7 @@
             :
             parsed.words;
 
+
           if(
             !Array.isArray(
               incoming
@@ -1946,89 +2643,110 @@
           ){
 
             throw new Error(
-              "invalid"
+              "invalid backup"
             );
 
           }
+
+
 
           const addMode =
             confirm(
               "OK = 現在の単語帳に追加\n\nキャンセル = 現在の単語帳をバックアップ内容で置き換え"
             );
 
+
+
           if(addMode){
 
             const existingIds =
               new Set(
                 words.map(
-                  w => w.id
+                  word =>
+                    word.id
                 )
               );
 
+
             const normalized =
               incoming.map(
-                w => ({
+                word => ({
 
-                  ...w,
+                  ...word,
 
                   id:
-                    w.id
+                    word.id
                     &&
                     !existingIds
-                      .has(w.id)
+                      .has(
+                        word.id
+                      )
                     ?
-                    w.id
+                    word.id
                     :
                     uid(),
 
                   correctCount:
                     Number(
-                      w.correctCount || 0
+                      word.correctCount
+                      ||
+                      0
                     ),
 
                   wrongCount:
                     Number(
-                      w.wrongCount || 0
+                      word.wrongCount
+                      ||
+                      0
                     )
 
                 })
               );
+
 
             words = [
               ...words,
               ...normalized
             ];
 
-          }else{
+          }
+
+          else{
 
             const sure =
               confirm(
-                "現在の単語帳を置き換えます。よろしいですか？"
+                "現在の単語帳をバックアップ内容で置き換えます。よろしいですか？"
               );
+
 
             if(!sure){
               return;
             }
 
+
             words =
               incoming.map(
-                w => ({
+                word => ({
 
-                  ...w,
+                  ...word,
 
                   id:
-                    w.id
+                    word.id
                     ||
                     uid(),
 
                   correctCount:
                     Number(
-                      w.correctCount || 0
+                      word.correctCount
+                      ||
+                      0
                     ),
 
                   wrongCount:
                     Number(
-                      w.wrongCount || 0
+                      word.wrongCount
+                      ||
+                      0
                     )
 
                 })
@@ -2036,20 +2754,32 @@
 
           }
 
+
           saveWords();
 
+
           $("importFile")
-            .value = "";
+            .value =
+            "";
+
 
           alert(
             "バックアップを読み込みました。"
           );
 
+
           switchTab(
             "words"
           );
 
-        }catch{
+        }
+
+        catch(error){
+
+          console.error(
+            error
+          );
+
 
           alert(
             "このファイルは読み込めませんでした。正しいバックアップJSONを選んでください。"
@@ -2060,76 +2790,11 @@
       }
     );
 
+
   renderWords();
 
 })();
-
 </script>
 
 </body>
-</html><section id="addSection" class="hidden">
-
-  <div class="card">
-
-    <div class="section-title" id="formTitle">
-      単語を追加
-    </div>
-
-    <div class="muted">
-      単語と意味だけ必須です。
-    </div>
-
-    <input type="hidden" id="editId">
-
-    <label>英単語・フレーズ</label>
-    <input
-      id="word"
-      autocomplete="off"
-      placeholder="例: impact"
-    >
-
-    <label>例文</label>
-    <textarea
-      id="example"
-      placeholder="The new policy had a big impact on the company."
-    ></textarea>
-
-    <label>意味</label>
-    <textarea
-      id="meaning"
-      placeholder="例: 影響、衝撃 / 影響を与える"
-    ></textarea>
-
-    <label>例文の日本語訳</label>
-    <textarea
-      id="translation"
-      placeholder="その新しい方針は会社に大きな影響を与えた。"
-    ></textarea>
-
-    <label>使い方メモ</label>
-    <textarea
-      id="usage"
-      placeholder="例: impact on ～ で「～への影響」"
-    ></textarea>
-
-    <label>自由メモ</label>
-    <textarea
-      id="memo"
-      placeholder="自分の覚え方、ニュアンス、気づきなど"
-    ></textarea>
-
-    <div class="row" style="margin-top:14px">
-
-      <button class="primary" id="saveBtn">
-        保存
-      </button>
-
-      <button id="cancelEdit" class="hidden">
-        キャンセル
-      </button>
-
-    </div>
-
-  </div>
-
-</section>
+</html>
