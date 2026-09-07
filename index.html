@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#111827">
+  <title>My English Words</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:#f5f7fb;
+      color:#111827;
+    }
+
+    header{
+      padding:16px;
+      background:#ffffff;
+      border-bottom:1px solid #e5e7eb;
+      position:sticky;
+      top:0;
+    }
+
+    header h1{
+      margin:0;
+      font-size:20px;
+    }
+
+    main{
+      max-width:700px;
+      margin:auto;
+      padding:16px 16px 80px;
+    }
+
+    .tabs{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:8px;
+      margin-bottom:16px;
+    }
+
+    button{
+      border:0;
+      border-radius:12px;
+      padding:12px;
+      font-size:15px;
+      font-weight:600;
+      background:#e5e7eb;
+    }
+
+    button.active,
+    button.primary{
+      background:#111827;
+      color:white;
+    }
+
+    button.danger{
+      background:#fee2e2;
+      color:#dc2626;
+    }
+
+    button.ok{
+      background:#dcfce7;
+      color:#166534;
+    }
+
+    .card{
+      background:white;
+      border:1px solid #e5e7eb;
+      border-radius:16px;
+      padding:16px;
+      margin-bottom:12px;
+    }
+
+    label{
+      display:block;
+      font-size:13px;
+      font-weight:700;
+      margin:12px 0 6px;
+    }
+
+    input,
+    textarea,
+    select{
+      width:100%;
+      box-sizing:border-box;
+      border:1px solid #d1d5db;
+      border-radius:10px;
+      padding:11px;
+      font-size:16px;
+    }
+
+    textarea{
+      min-height:80px;
+    }
+
+    .hidden{
+      display:none;
+    }
+
+    .word{
+      font-size:24px;
+      font-weight:800;
+    }
+
+    .meaning{
+      margin-top:4px;
+      font-size:16px;
+    }
+
+    .muted{
+      color:#6b7280;
+      font-size:13px;
+    }
+
+    .row{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .space{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .pill{
+      display:inline-block;
+      background:#eef2ff;
+      color:#3730a3;
+      padding:4px 8px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:700;
+    }
+
+    .quiz-word{
+      font-size:30px;
+      font-weight:800;
+      text-align:center;
+      margin:24px 0;
+    }
+
+    .empty{
+      text-align:center;
+      padding:30px;
+      color:#6b7280;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>My English Words</h1>
+</header>
+
+<main>
+
+  <div class="tabs">
+    <button class="tab active" data-tab="words">単語帳</button>
+    <button class="tab" data-tab="add">追加</button>
+    <button class="tab" data-tab="quiz">テスト</button>
+  </div>
+
+  <section id="wordsSection">
+
+    <div class="card space">
+      <div>
+        <b>登録単語</b>
+        <div class="muted"><span id="wordCount">0</span> words</div>
+      </div>
+
+      <select id="filterMode" style="width:auto">
+        <option value="all">すべて</option>
+        <option value="wrong">間違えた単語</option>
+      </select>
+    </div>
+
+    <div id="wordList"></div>
+
+  </section>
+
+  <section id="addSection" class="hidden">
+
+    <div class="card">
+
+      <h3 id="formTitle">単語を追加</h3>
+
+      <input type="hidden" id="editId">
+
+      <label>英単語・フレーズ</label>
+      <input id="word" placeholder="impact">
+
+      <label>意味</label>
+      <input id="meaning" placeholder="影響、衝撃">
+
+      <label>例文</label>
+      <textarea id="example" placeholder="The new policy had a big impact on the company."></textarea>
+
+      <label>例文の日本語訳</label>
+      <textarea id="translation" placeholder="その新しい方針は会社に大きな影響を与えた。"></textarea>
+
+      <label>使い方メモ</label>
+      <textarea id="usage" placeholder="impact on ～ で「～への影響」"></textarea>
+
+      <label>自由メモ</label>
+      <textarea id="memo" placeholder="自分の覚え方やニュアンス"></textarea>
+
+      <div class="row" style="margin-top:14px">
+        <button class="primary" id="saveBtn">保存</button>
+        <button id="cancelEdit" class="hidden">キャンセル</button>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="quizSection" class="hidden">
+
+    <div class="card">
+
+      <label>テスト形式</label>
+
+      <select id="quizMode">
+        <option value="en-ja">英語 → 日本語</option>
+        <option value="ja-en">日本語 → 英語</option>
+        <option value="audio">音声 → 単語</option>
+      </select>
+
+      <label>出題範囲</label>
+
+      <select id="quizScope">
+        <option value="all">すべて</option>
+        <option value="wrong">間違えた単語のみ</option>
+      </select>
+
+      <button class="primary" id="startQuiz" style="width:100%;margin-top:14px">
+        テスト開始
+      </button>
+
+    </div>
+
+    <div id="quizCard" class="card hidden">
+
+      <div class="muted" id="quizProgress"></div>
+
+      <div id="quizPrompt" class="quiz-word"></div>
+
+      <div id="audioRow" class="row" style="justify-content:center"></div>
+
+      <button id="showAnswer" style="width:100%">
+        答えを見る
+      </button>
+
+      <div id="answerBox" class="hidden">
+
+        <hr>
+
+        <div id="quizAnswer"></div>
+
+        <div class="row" style="margin-top:16px">
+
+          <button class="danger" id="wrongBtn">
+            ✕ 間違えた
+          </button>
+
+          <button class="ok" id="correctBtn">
+            ✓ 正解
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div id="quizResult" class="card hidden"></div>
+
+  </section>
+
+</main>
+
+<script>
+
+const STORAGE_KEY = "myEnglishWords";
+
+let words = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+
+let quizItems = [];
+let quizIndex = 0;
+let quizCorrect = 0;
+
+const $ = id => document.getElementById(id);
+
+function save(){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(words));
+  renderWords();
+}
+
+function uid(){
+  return Date.now().toString();
+}
+
+function speak(text){
+
+  if(!text) return;
+
+  speechSynthesis.cancel();
+
+  const u = new SpeechSynthesisUtterance(text);
+
+  u.lang = "en-US";
+  u.rate = 0.85;
+
+  speechSynthesis.speak(u);
+}
+
+function switchTab(name){
+
+  document.querySelectorAll(".tab").forEach(btn=>{
+    btn.classList.toggle("active", btn.dataset.tab === name);
+  });
+
+  $("wordsSection").classList.toggle("hidden", name !== "words");
+  $("addSection").classList.toggle("hidden", name !== "add");
+  $("quizSection").classList.toggle("hidden", name !== "quiz");
+
+  if(name === "words"){
+    renderWords();
+  }
+}
+
+document.querySelectorAll(".tab").forEach(btn=>{
+  btn.onclick = ()=> switchTab(btn.dataset.tab);
+});
+
+function renderWords(){
+
+  const mode = $("filterMode").value;
+
+  const list =
+    mode === "wrong"
+    ? words.filter(w => (w.wrongCount || 0) > 0)
+    : words;
+
+  $("wordCount").textContent = words.length;
+
+  if(list.length === 0){
+
+    $("wordList").innerHTML =
+      '<div class="empty">まだ単語がありません。</div>';
+
+    return;
+  }
+
+  $("wordList").innerHTML =
+    list.slice().reverse().map(w => `
+
+      <div class="card">
+
+        <div class="space">
+
+          <div>
+
+            <div class="word">
+              ${w.word}
+            </div>
+
+            <div class="meaning">
+              ${w.meaning}
+            </div>
+
+          </div>
+
+          <button onclick="speak('${w.word.replace(/'/g,"\\'")}')">
+            🔊
+          </button>
+
+        </div>
+
+        ${
+          w.example
+          ? `
+          <div style="margin-top:14px">
+
+            <b>例文</b>
+
+            <br>
+
+            ${w.example}
+
+            <button onclick="speak('${w.example.replace(/'/g,"\\'")}')">
+              🔊
+            </button>
+
+          </div>
+          `
+          : ""
+        }
+
+        ${
+          w.translation
+          ? `<div class="muted">${w.translation}</div>`
+          : ""
+        }
+
+        ${
+          w.usage
+          ? `
+          <div style="margin-top:12px">
+
+            <span class="pill">使い方</span>
+
+            <div style="margin-top:6px">
+              ${w.usage}
+            </div>
+
+          </div>
+          `
+          : ""
+        }
+
+        ${
+          w.memo
+          ? `
+          <div style="margin-top:12px">
+
+            <span class="pill">メモ</span>
+
+            <div style="margin-top:6px">
+              ${w.memo}
+            </div>
+
+          </div>
+          `
+          : ""
+        }
+
+        <div class="muted" style="margin-top:12px">
+
+          正解 ${w.correctCount || 0}
+          /
+          間違い ${w.wrongCount || 0}
+
+        </div>
+
+        <div class="row" style="margin-top:12px">
+
+          <button onclick="editWord('${w.id}')">
+            編集
+          </button>
+
+          <button
+            class="danger"
+            onclick="deleteWord('${w.id}')"
+          >
+            削除
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join("");
+}
+
+$("filterMode").onchange = renderWords;
+
+$("saveBtn").onclick = ()=>{
+
+  const word = $("word").value.trim();
+  const meaning = $("meaning").value.trim();
+
+  if(!word || !meaning){
+
+    alert("単語と意味を入力してください");
+    return;
+  }
+
+  const id = $("editId").value;
+
+  const data = {
+
+    word,
+    meaning,
+
+    example: $("example").value.trim(),
+
+    translation: $("translation").value.trim(),
+
+    usage: $("usage").value.trim(),
+
+    memo: $("memo").value.trim()
+
+  };
+
+  if(id){
+
+    const index = words.findIndex(w => w.id === id);
+
+    words[index] = {
+      ...words[index],
+      ...data
+    };
+
+  }else{
+
+    words.push({
+
+      id: uid(),
+
+      ...data,
+
+      correctCount: 0,
+
+      wrongCount: 0
+
+    });
+
+  }
+
+  save();
+
+  clearForm();
+
+  switchTab("words");
+};
+
+function clearForm(){
+
+  [
+    "editId",
+    "word",
+    "meaning",
+    "example",
+    "translation",
+    "usage",
+    "memo"
+  ].forEach(id=>{
+    $(id).value = "";
+  });
+
+  $("formTitle").textContent = "単語を追加";
+
+  $("cancelEdit").classList.add("hidden");
+}
+
+$("cancelEdit").onclick = ()=>{
+
+  clearForm();
+
+  switchTab("words");
+};
+
+window.editWord = id =>{
+
+  const w = words.find(x => x.id === id);
+
+  if(!w) return;
+
+  $("editId").value = w.id;
+
+  $("word").value = w.word;
+
+  $("meaning").value = w.meaning;
+
+  $("example").value = w.example || "";
+
+  $("translation").value = w.translation || "";
+
+  $("usage").value = w.usage || "";
+
+  $("memo").value = w.memo || "";
+
+  $("formTitle").textContent = "単語を編集";
+
+  $("cancelEdit").classList.remove("hidden");
+
+  switchTab("add");
+};
+
+window.deleteWord = id =>{
+
+  if(confirm("この単語を削除しますか？")){
+
+    words = words.filter(w => w.id !== id);
+
+    save();
+  }
+};
+
+$("startQuiz").onclick = ()=>{
+
+  let pool =
+    $("quizScope").value === "wrong"
+    ? words.filter(w => (w.wrongCount || 0) > 0)
+    : [...words];
+
+  if(pool.length === 0){
+
+    alert("出題できる単語がありません");
+
+    return;
+  }
+
+  quizItems = pool.sort(()=>Math.random() - 0.5);
+
+  quizIndex = 0;
+
+  quizCorrect = 0;
+
+  $("quizResult").classList.add("hidden");
+
+  $("quizCard").classList.remove("hidden");
+
+  showQuestion();
+};
+
+function showQuestion(){
+
+  if(quizIndex >= quizItems.length){
+
+    $("quizCard").classList.add("hidden");
+
+    $("quizResult").classList.remove("hidden");
+
+    $("quizResult").innerHTML = `
+
+      <h2>結果</h2>
+
+      <div style="font-size:34px;font-weight:800">
+        ${quizCorrect} / ${quizItems.length}
+      </div>
+
+    `;
+
+    return;
+  }
+
+  const w = quizItems[quizIndex];
+
+  const mode = $("quizMode").value;
+
+  $("quizProgress").textContent =
+    `${quizIndex + 1} / ${quizItems.length}`;
+
+  $("answerBox").classList.add("hidden");
+
+  $("audioRow").innerHTML = "";
+
+  if(mode === "en-ja"){
+
+    $("quizPrompt").textContent = w.word;
+
+    $("quizAnswer").innerHTML =
+      `<b>${w.meaning}</b>`;
+
+  }
+
+  if(mode === "ja-en"){
+
+    $("quizPrompt").textContent = w.meaning;
+
+    $("quizAnswer").innerHTML =
+      `<b>${w.word}</b>`;
+
+  }
+
+  if(mode === "audio"){
+
+    $("quizPrompt").textContent =
+      "🔊 音声を聞いて答える";
+
+    $("audioRow").innerHTML =
+      `<button class="primary"
+      onclick="speak('${w.word.replace(/'/g,"\\'")}')">
+      ▶ 再生
+      </button>`;
+
+    $("quizAnswer").innerHTML =
+      `<b>${w.word}</b><br>${w.meaning}`;
+
+    setTimeout(()=>speak(w.word),300);
+  }
+}
+
+$("showAnswer").onclick = ()=>{
+
+  $("answerBox").classList.remove("hidden");
+
+};
+
+$("correctBtn").onclick = ()=> grade(true);
+
+$("wrongBtn").onclick = ()=> grade(false);
+
+function grade(ok){
+
+  const current = quizItems[quizIndex];
+
+  const real =
+    words.find(w => w.id === current.id);
+
+  if(real){
+
+    if(ok){
+
+      real.correctCount =
+        (real.correctCount || 0) + 1;
+
+      quizCorrect++;
+
+    }else{
+
+      real.wrongCount =
+        (real.wrongCount || 0) + 1;
+
+    }
+
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(words)
+    );
+  }
+
+  quizIndex++;
+
+  showQuestion();
+}
+
+renderWords();
+
+</script>
+
+</body>
+</html>
