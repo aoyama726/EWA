@@ -622,3 +622,1289 @@ function weakScore(w){
   return Number(w.wrongCount || 0) * 3
     - Number(w.correctCount || 0);
 }
+
+
+function renderWords(){
+
+  let list = [...words];
+
+  const mode = $("filterMode").value;
+
+  if(mode === "wrong"){
+
+    list = list.filter(
+      w => Number(w.wrongCount || 0) > 0
+    );
+
+  }else if(mode === "weak"){
+
+    list.sort(
+      (a,b) => weakScore(b) - weakScore(a)
+    );
+
+  }else{
+
+    list.reverse();
+  }
+
+  $("wordCount").textContent = words.length;
+
+  const container = $("wordList");
+
+  container.innerHTML = "";
+
+  if(!list.length){
+
+    container.appendChild(
+      makeText(
+        "div",
+        "まだ単語がありません。",
+        "empty"
+      )
+    );
+
+    return;
+  }
+
+
+  list.forEach(w => {
+
+    const card = document.createElement("div");
+
+    card.className = "card";
+
+
+    const top = document.createElement("div");
+
+    top.className = "space";
+
+
+    const left = document.createElement("div");
+
+    left.appendChild(
+      makeText("div",w.word,"word")
+    );
+
+    left.appendChild(
+      makeText("div",w.meaning,"meaning")
+    );
+
+
+    const speaker = makeText("button","🔊");
+
+    speaker.addEventListener(
+      "click",
+      () => speak(w.word)
+    );
+
+
+    top.append(left,speaker);
+
+    card.appendChild(top);
+
+
+    if(w.example){
+
+      const exampleBox = document.createElement("div");
+
+      exampleBox.style.marginTop = "18px";
+
+      exampleBox.appendChild(
+        makeText("b","例文")
+      );
+
+      const example = makeText(
+        "div",
+        w.example,
+        "small"
+      );
+
+      example.style.marginTop = "6px";
+
+      exampleBox.appendChild(example);
+
+
+      const exampleSpeaker =
+        makeText("button","🔊 例文を再生");
+
+      exampleSpeaker.style.marginTop = "10px";
+
+      exampleSpeaker.addEventListener(
+        "click",
+        () => speak(w.example)
+      );
+
+      exampleBox.appendChild(exampleSpeaker);
+
+      card.appendChild(exampleBox);
+    }
+
+
+    if(w.translation){
+
+      const tr = makeText(
+        "div",
+        w.translation,
+        "muted"
+      );
+
+      tr.style.marginTop = "8px";
+
+      card.appendChild(tr);
+    }
+
+
+    if(w.usage){
+
+      const box = document.createElement("div");
+
+      box.style.marginTop = "16px";
+
+      box.appendChild(
+        makeText("span","使い方","pill")
+      );
+
+      const txt = makeText(
+        "div",
+        w.usage,
+        "small"
+      );
+
+      txt.style.marginTop = "8px";
+
+      box.appendChild(txt);
+
+      card.appendChild(box);
+    }
+
+
+    if(w.memo){
+
+      const box = document.createElement("div");
+
+      box.style.marginTop = "14px";
+
+      box.appendChild(
+        makeText("span","メモ","pill")
+      );
+
+      const txt = makeText(
+        "div",
+        w.memo,
+        "small"
+      );
+
+      txt.style.marginTop = "8px";
+
+      box.appendChild(txt);
+
+      card.appendChild(box);
+    }
+
+
+    const correct = Number(w.correctCount || 0);
+    const wrong = Number(w.wrongCount || 0);
+
+    const stats = document.createElement("div");
+
+    stats.className = "stats";
+
+    [
+      ["正解",correct],
+      ["間違い",wrong],
+      ["回答",correct + wrong]
+    ].forEach(([label,value]) => {
+
+      const stat = document.createElement("div");
+
+      stat.className = "stat";
+
+      stat.appendChild(
+        makeText("strong",String(value))
+      );
+
+      stat.appendChild(
+        makeText("span",label,"muted")
+      );
+
+      stats.appendChild(stat);
+
+    });
+
+    card.appendChild(stats);
+
+
+    const actions = document.createElement("div");
+
+    actions.className = "row";
+    actions.style.marginTop = "16px";
+
+
+    const edit = makeText("button","編集");
+
+    edit.addEventListener(
+      "click",
+      () => editWord(w.id)
+    );
+
+
+    const del = makeText(
+      "button",
+      "削除",
+      "danger"
+    );
+
+    del.addEventListener(
+      "click",
+      () => deleteWord(w.id)
+    );
+
+
+    actions.append(edit,del);
+
+    card.appendChild(actions);
+
+    container.appendChild(card);
+
+  });
+}
+
+
+$("filterMode").addEventListener(
+  "change",
+  renderWords
+);
+
+
+function clearForm(){
+
+  [
+    "editId",
+    "word",
+    "example",
+    "meaning",
+    "translation",
+    "usage",
+    "memo"
+  ].forEach(id => {
+    $(id).value = "";
+  });
+
+  $("formTitle").textContent = "単語を追加";
+
+  $("cancelEdit").classList.add("hidden");
+}
+
+
+$("saveBtn").addEventListener("click",() => {
+
+  const word = $("word").value.trim();
+  const meaning = $("meaning").value.trim();
+
+  if(!word || !meaning){
+
+    alert("単語と意味は入力してください。");
+
+    return;
+  }
+
+  const data = {
+
+    word,
+
+    example:$("example").value.trim(),
+
+    meaning,
+
+    translation:$("translation").value.trim(),
+
+    usage:$("usage").value.trim(),
+
+    memo:$("memo").value.trim(),
+
+    updatedAt:Date.now()
+
+  };
+
+
+  const id = $("editId").value;
+
+
+  if(id){
+
+    const index = words.findIndex(
+      w => w.id === id
+    );
+
+    if(index !== -1){
+
+      words[index] = {
+        ...words[index],
+        ...data
+      };
+    }
+
+  }else{
+
+    words.push({
+
+      id:uid(),
+
+      ...data,
+
+      correctCount:0,
+
+      wrongCount:0,
+
+      createdAt:Date.now()
+
+    });
+  }
+
+
+  saveWords();
+
+  clearForm();
+
+  switchTab("words");
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+});
+
+
+$("cancelEdit").addEventListener("click",() => {
+
+  clearForm();
+
+  switchTab("words");
+
+});
+
+
+function editWord(id){
+
+  const w = words.find(
+    x => x.id === id
+  );
+
+  if(!w) return;
+
+  $("editId").value = w.id;
+  $("word").value = w.word || "";
+  $("example").value = w.example || "";
+  $("meaning").value = w.meaning || "";
+  $("translation").value = w.translation || "";
+  $("usage").value = w.usage || "";
+  $("memo").value = w.memo || "";
+
+  $("formTitle").textContent = "単語を編集";
+
+  $("cancelEdit").classList.remove("hidden");
+
+  switchTab("add");
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+
+function deleteWord(id){
+
+  if(!confirm("この単語を削除しますか？")){
+    return;
+  }
+
+  words = words.filter(
+    w => w.id !== id
+  );
+
+  saveWords();
+}
+
+
+/* --------------------
+   3択テスト
+-------------------- */
+
+
+function shuffle(array){
+
+  const a = [...array];
+
+  for(let i=a.length-1;i>0;i--){
+
+    const j = Math.floor(
+      Math.random() * (i+1)
+    );
+
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+
+  return a;
+}
+
+
+function weightedWeakPool(source){
+
+  const result = [];
+
+  source.forEach(w => {
+
+    const wrong = Number(w.wrongCount || 0);
+
+    const correct = Number(w.correctCount || 0);
+
+    const weight = Math.max(
+      1,
+      1 + wrong * 2 - Math.floor(correct / 3)
+    );
+
+    for(
+      let i=0;
+      i<Math.min(weight,5);
+      i++
+    ){
+      result.push(w);
+    }
+
+  });
+
+  return shuffle(result);
+}
+
+
+function getChoiceText(w,mode){
+
+  if(mode === "en-ja"){
+    return w.meaning;
+  }
+
+  return w.word;
+}
+
+
+function getThreeChoices(correctWord,mode){
+
+  const others = words.filter(
+    w => w.id !== correctWord.id
+  );
+
+  const randomOthers =
+    shuffle(others).slice(0,2);
+
+  const choices = [
+    correctWord,
+    ...randomOthers
+  ];
+
+  return shuffle(choices).map(w => ({
+
+    id:w.id,
+
+    text:getChoiceText(w,mode)
+
+  }));
+}
+
+
+$("startQuiz").addEventListener("click",() => {
+
+  if(words.length < 3){
+
+    alert(
+      "3択テストには最低3単語登録してください。"
+    );
+
+    return;
+  }
+
+
+  const scope = $("quizScope").value;
+
+  let pool = [...words];
+
+
+  if(scope === "wrong"){
+
+    pool = pool.filter(
+      w => Number(w.wrongCount || 0) > 0
+    );
+
+  }else if(scope === "weak"){
+
+    pool = weightedWeakPool(pool);
+
+  }else{
+
+    pool = shuffle(pool);
+  }
+
+
+  if(!pool.length){
+
+    alert("出題できる単語がありません。");
+
+    return;
+  }
+
+
+  quizItems = pool;
+
+  quizIndex = 0;
+
+  quizCorrect = 0;
+
+  $("quizResult").classList.add("hidden");
+
+  $("quizCard").classList.remove("hidden");
+
+  showQuestion();
+
+});
+
+
+function showQuestion(){
+
+  if(quizIndex >= quizItems.length){
+
+    showQuizResult();
+
+    return;
+  }
+
+
+  quizAnswered = false;
+
+
+  const current = quizItems[quizIndex];
+
+  const mode = $("quizMode").value;
+
+
+  $("quizProgress").textContent =
+    `${quizIndex + 1} / ${quizItems.length}`;
+
+
+  $("choices").innerHTML = "";
+
+  $("feedback").innerHTML = "";
+
+  $("feedback").className = "hidden";
+
+  $("nextQuestion").classList.add("hidden");
+
+
+  if(mode === "en-ja"){
+
+    $("quizPrompt").textContent =
+      current.word;
+
+    $("audioArea").classList.add("hidden");
+
+  }
+
+  else if(mode === "ja-en"){
+
+    $("quizPrompt").textContent =
+      current.meaning;
+
+    $("audioArea").classList.add("hidden");
+
+  }
+
+  else{
+
+    $("quizPrompt").textContent =
+      "🔊 音声を聞いて答える";
+
+    $("audioArea").classList.remove("hidden");
+
+    setTimeout(
+      () => speak(current.word),
+      300
+    );
+  }
+
+
+  const choices =
+    getThreeChoices(
+      current,
+      mode
+    );
+
+
+  choices.forEach(choice => {
+
+    const button =
+      makeText(
+        "button",
+        choice.text,
+        "choice"
+      );
+
+
+    button.dataset.id =
+      choice.id;
+
+
+    button.addEventListener(
+      "click",
+      () =>
+        answerQuestion(
+          choice.id,
+          button
+        )
+    );
+
+
+    $("choices").appendChild(button);
+
+  });
+
+}
+
+
+$("playAudio").addEventListener("click",() => {
+
+  if(
+    quizIndex
+    <
+    quizItems.length
+  ){
+
+    speak(
+      quizItems[
+        quizIndex
+      ].word
+    );
+
+  }
+
+});
+
+
+function answerQuestion(
+  selectedId,
+  selectedButton
+){
+
+  if(quizAnswered){
+    return;
+  }
+
+  quizAnswered = true;
+
+
+  const current =
+    quizItems[
+      quizIndex
+    ];
+
+
+  const isCorrect =
+    selectedId
+    ===
+    current.id;
+
+
+  document
+    .querySelectorAll(
+      ".choice"
+    )
+    .forEach(button => {
+
+      button.disabled =
+        true;
+
+
+      if(
+        button.dataset.id
+        ===
+        current.id
+      ){
+
+        button
+          .classList
+          .add(
+            "showCorrect"
+          );
+
+      }
+
+    });
+
+
+  if(isCorrect){
+
+    selectedButton
+      .classList
+      .add(
+        "selectedCorrect"
+      );
+
+    current.correctCount =
+      Number(
+        current.correctCount
+        ||
+        0
+      )
+      +
+      1;
+
+    quizCorrect++;
+
+  }
+
+  else{
+
+    selectedButton
+      .classList
+      .add(
+        "selectedWrong"
+      );
+
+    current.wrongCount =
+      Number(
+        current.wrongCount
+        ||
+        0
+      )
+      +
+      1;
+
+  }
+
+
+  current.updatedAt =
+    Date.now();
+
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(words)
+  );
+
+
+  showFeedback(
+    current,
+    isCorrect
+  );
+
+
+  $("nextQuestion")
+    .classList
+    .remove(
+      "hidden"
+    );
+
+}
+
+
+function showFeedback(
+  w,
+  isCorrect
+){
+
+  const box =
+    $("feedback");
+
+
+  box.innerHTML =
+    "";
+
+
+  box.className =
+    "feedback "
+    +
+    (
+      isCorrect
+      ?
+      "good"
+      :
+      "bad"
+    );
+
+
+  const title =
+    makeText(
+      "div",
+      isCorrect
+      ?
+      "✓ 正解"
+      :
+      "✕ 不正解",
+      "feedbackTitle"
+    );
+
+
+  box.appendChild(
+    title
+  );
+
+
+  const divider =
+    document
+      .createElement(
+        "div"
+      );
+
+  divider.className =
+    "divider";
+
+
+  box.appendChild(
+    divider
+  );
+
+
+  box.appendChild(
+    makeText(
+      "div",
+      w.word,
+      "word"
+    )
+  );
+
+
+  box.appendChild(
+    makeText(
+      "div",
+      w.meaning,
+      "meaning"
+    )
+  );
+
+
+  if(w.example){
+
+    const label =
+      makeText(
+        "div",
+        "例文",
+        "small"
+      );
+
+    label.style.fontWeight =
+      "800";
+
+    label.style.marginTop =
+      "16px";
+
+
+    box.appendChild(
+      label
+    );
+
+
+    box.appendChild(
+      makeText(
+        "div",
+        w.example,
+        "small"
+      )
+    );
+
+  }
+
+
+  if(w.translation){
+
+    const tr =
+      makeText(
+        "div",
+        w.translation,
+        "muted"
+      );
+
+
+    tr.style.marginTop =
+      "6px";
+
+
+    box.appendChild(
+      tr
+    );
+
+  }
+
+
+  if(w.usage){
+
+    const us =
+      makeText(
+        "div",
+        "使い方: "
+        +
+        w.usage,
+        "small"
+      );
+
+
+    us.style.marginTop =
+      "14px";
+
+
+    box.appendChild(
+      us
+    );
+
+  }
+
+
+  if(w.memo){
+
+    const memo =
+      makeText(
+        "div",
+        "メモ: "
+        +
+        w.memo,
+        "small"
+      );
+
+
+    memo.style.marginTop =
+      "10px";
+
+
+    box.appendChild(
+      memo
+    );
+
+  }
+
+
+  box.classList.remove(
+    "hidden"
+  );
+
+}
+
+
+$("nextQuestion").addEventListener("click",() => {
+
+  quizIndex++;
+
+  showQuestion();
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+});
+
+
+function showQuizResult(){
+
+  $("quizCard")
+    .classList
+    .add(
+      "hidden"
+    );
+
+
+  const result =
+    $("quizResult");
+
+
+  result.innerHTML =
+    "";
+
+
+  result.classList.remove(
+    "hidden"
+  );
+
+
+  result.appendChild(
+    makeText(
+      "div",
+      "テスト結果",
+      "section-title"
+    )
+  );
+
+
+  const score =
+    makeText(
+      "div",
+      `${quizCorrect} / ${quizItems.length}`,
+      "quizPrompt"
+    );
+
+
+  result.appendChild(
+    score
+  );
+
+
+  const rate =
+    Math.round(
+      quizCorrect
+      /
+      quizItems.length
+      *
+      100
+    );
+
+
+  result.appendChild(
+    makeText(
+      "div",
+      `正答率 ${rate}%`,
+      "muted"
+    )
+  );
+
+
+  renderWords();
+
+}
+
+
+/* --------------------
+   バックアップ
+-------------------- */
+
+
+$("exportBtn").addEventListener("click",() => {
+
+  const payload = {
+
+    app:"My English Words",
+
+    version:3,
+
+    exportedAt:
+      new Date().toISOString(),
+
+    words
+
+  };
+
+
+  const blob =
+    new Blob(
+      [
+        JSON.stringify(
+          payload,
+          null,
+          2
+        )
+      ],
+      {
+        type:"application/json"
+      }
+    );
+
+
+  const url =
+    URL.createObjectURL(
+      blob
+    );
+
+
+  const a =
+    document
+      .createElement(
+        "a"
+      );
+
+
+  const date =
+    new Date()
+      .toISOString()
+      .slice(0,10);
+
+
+  a.href =
+    url;
+
+
+  a.download =
+    `english-words-backup-${date}.json`;
+
+
+  document.body
+    .appendChild(
+      a
+    );
+
+
+  a.click();
+
+  a.remove();
+
+
+  setTimeout(
+    () =>
+      URL.revokeObjectURL(
+        url
+      ),
+    1000
+  );
+
+});
+
+
+$("importBtn").addEventListener("click",async () => {
+
+  const file =
+    $("importFile")
+      .files?.[0];
+
+
+  if(!file){
+
+    alert(
+      "バックアップファイルを選んでください。"
+    );
+
+    return;
+
+  }
+
+
+  try{
+
+    const text =
+      await file.text();
+
+
+    const parsed =
+      JSON.parse(text);
+
+
+    const incoming =
+      Array.isArray(parsed)
+      ?
+      parsed
+      :
+      parsed.words;
+
+
+    if(
+      !Array.isArray(
+        incoming
+      )
+    ){
+
+      throw new Error();
+    }
+
+
+    const add =
+      confirm(
+        "OK = 現在の単語帳に追加\n\nキャンセル = 現在の単語帳をバックアップ内容で置き換え"
+      );
+
+
+    if(add){
+
+      const existingIds =
+        new Set(
+          words.map(
+            w => w.id
+          )
+        );
+
+
+      const normalized =
+        incoming.map(
+          w => ({
+
+            ...w,
+
+            id:
+              w.id
+              &&
+              !existingIds.has(w.id)
+              ?
+              w.id
+              :
+              uid()
+
+          })
+        );
+
+
+      words = [
+        ...words,
+        ...normalized
+      ];
+
+    }
+
+    else{
+
+      const sure =
+        confirm(
+          "現在の単語帳を置き換えます。よろしいですか？"
+        );
+
+
+      if(!sure){
+        return;
+      }
+
+
+      words =
+        incoming.map(
+          w => ({
+
+            ...w,
+
+            id:
+              w.id
+              ||
+              uid()
+
+          })
+        );
+
+    }
+
+
+    saveWords();
+
+
+    $("importFile").value =
+      "";
+
+
+    alert(
+      "バックアップを読み込みました。"
+    );
+
+
+    switchTab(
+      "words"
+    );
+
+  }
+
+  catch{
+
+    alert(
+      "正しいバックアップJSONではありません。"
+    );
+
+  }
+
+});
+
+
+renderWords();
+
+})();
+</script>
+
+</body>
+</html>
