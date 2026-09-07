@@ -8,15 +8,8 @@
   content="width=device-width,initial-scale=1,viewport-fit=cover"
 >
 
-<meta
-  name="theme-color"
-  content="#111827"
->
-
-<meta
-  name="apple-mobile-web-app-capable"
-  content="yes"
->
+<meta name="theme-color" content="#111827">
+<meta name="apple-mobile-web-app-capable" content="yes">
 
 <title>My English Words</title>
 
@@ -24,7 +17,7 @@
 
 :root{
   --bg:#f5f7fb;
-  --card:#ffffff;
+  --card:#fff;
   --text:#111827;
   --muted:#6b7280;
   --line:#e5e7eb;
@@ -32,7 +25,7 @@
   --blue:#2563eb;
   --red:#dc2626;
   --green:#15803d;
-  --purple:#3730a3;
+  --soft:#eef2ff;
 }
 
 *{
@@ -41,375 +34,262 @@
 
 body{
   margin:0;
-
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
-
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   background:var(--bg);
-
   color:var(--text);
 }
 
 header{
   position:sticky;
-
   top:0;
-
   z-index:10;
-
-  background:
-    rgba(245,247,251,.96);
-
-  backdrop-filter:
-    blur(12px);
-
-  border-bottom:
-    1px solid var(--line);
-
-  padding:
-    18px 16px;
+  background:rgba(245,247,251,.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+  padding:18px 16px;
 }
 
 header h1{
   margin:0;
-
   font-size:22px;
 }
 
 main{
   max-width:760px;
-
   margin:auto;
-
-  padding:
-    16px 16px 100px;
+  padding:16px 16px 100px;
 }
 
 .tabs{
   display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
+  grid-template-columns:1fr 1fr;
   gap:10px;
-
   margin-bottom:18px;
 }
 
 button{
   border:0;
-
   border-radius:14px;
-
-  padding:
-    13px 14px;
-
+  padding:13px 14px;
   font-size:16px;
-
   font-weight:750;
-
   background:#e5e7eb;
-
   color:#111827;
 }
 
 .tab{
   min-height:60px;
-
   font-size:18px;
 }
 
 .tab.active,
 button.primary{
-  background:
-    var(--primary);
-
+  background:var(--primary);
   color:white;
 }
 
 button.blue{
-  background:
-    var(--blue);
-
+  background:var(--blue);
   color:white;
 }
 
 button.danger{
   background:#fee2e2;
-
   color:var(--red);
 }
 
 button.correct{
   background:#dcfce7;
-
   color:var(--green);
 }
 
 .card{
-  background:
-    var(--card);
-
-  border:
-    1px solid var(--line);
-
+  background:var(--card);
+  border:1px solid var(--line);
   border-radius:20px;
-
   padding:18px;
-
   margin-bottom:14px;
-
-  box-shadow:
-    0 2px 8px
-    rgba(0,0,0,.03);
+  box-shadow:0 2px 8px rgba(0,0,0,.03);
 }
 
 .section-title{
   font-size:22px;
-
   font-weight:850;
-
   margin-bottom:6px;
 }
 
 label{
   display:block;
-
   font-weight:800;
-
   font-size:15px;
-
-  margin:
-    18px 0 8px;
+  margin:18px 0 8px;
 }
 
 input,
 textarea,
 select{
   width:100%;
-
-  padding:
-    13px 14px;
-
-  border:
-    1px solid #d1d5db;
-
+  padding:13px 14px;
+  border:1px solid #d1d5db;
   border-radius:13px;
-
   background:white;
-
   color:#111827;
-
   font-size:17px;
-
   font-family:inherit;
 }
 
 textarea{
   min-height:100px;
-
   resize:vertical;
+}
+
+.searchBox{
+  position:relative;
+  margin-top:14px;
+}
+
+.searchBox input{
+  padding-left:44px;
+}
+
+.searchIcon{
+  position:absolute;
+  left:15px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:19px;
+  pointer-events:none;
 }
 
 .row{
   display:flex;
-
   gap:10px;
-
   align-items:center;
-
   flex-wrap:wrap;
 }
 
 .space{
   display:flex;
-
-  justify-content:
-    space-between;
-
+  justify-content:space-between;
   gap:12px;
-
   align-items:flex-start;
 }
 
 .grid2{
   display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
+  grid-template-columns:1fr 1fr;
   gap:10px;
 }
 
 .word{
   font-size:29px;
-
   font-weight:850;
-
-  word-break:
-    break-word;
+  word-break:break-word;
 }
 
 .meaning{
   font-size:18px;
-
   margin-top:6px;
-
-  white-space:
-    pre-wrap;
+  white-space:pre-wrap;
 }
 
 .small{
   font-size:16px;
-
   line-height:1.6;
-
-  white-space:
-    pre-wrap;
+  white-space:pre-wrap;
 }
 
 .muted{
-  color:
-    var(--muted);
-
+  color:var(--muted);
   font-size:14px;
-
   line-height:1.5;
 }
 
 .pill{
   display:inline-block;
-
-  background:#eef2ff;
-
-  color:var(--purple);
-
-  padding:
-    5px 9px;
-
+  background:var(--soft);
+  color:#3730a3;
+  padding:5px 9px;
   border-radius:999px;
-
   font-size:13px;
-
   font-weight:800;
 }
 
 .hidden{
-  display:none !important;
+  display:none!important;
 }
 
 .stats{
   display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
+  grid-template-columns:repeat(3,1fr);
   gap:8px;
-
   margin-top:16px;
 }
 
 .stat{
   background:#f9fafb;
-
   border-radius:14px;
-
-  padding:
-    14px 8px;
-
+  padding:14px 8px;
   text-align:center;
 }
 
 .stat strong{
   display:block;
-
   font-size:21px;
 }
 
 .empty{
   text-align:center;
-
-  color:
-    var(--muted);
-
-  padding:
-    40px 12px;
-
+  color:var(--muted);
+  padding:40px 12px;
   font-size:17px;
 }
 
 .quizPrompt{
   font-size:32px;
-
   font-weight:850;
-
   text-align:center;
-
-  margin:
-    26px 0;
-
-  white-space:
-    pre-wrap;
-
-  word-break:
-    break-word;
+  margin:26px 0;
+  white-space:pre-wrap;
+  word-break:break-word;
 }
 
 .choices{
   display:grid;
-
   gap:12px;
-
   margin-top:18px;
 }
 
 .choice{
   width:100%;
-
   min-height:64px;
-
   background:#f3f4f6;
-
-  border:
-    2px solid transparent;
-
+  border:2px solid transparent;
   text-align:left;
-
   padding:16px;
-
   font-size:18px;
 }
 
 .choice.selectedCorrect{
   background:#dcfce7;
-
   border-color:#22c55e;
-
   color:#166534;
 }
 
 .choice.selectedWrong{
   background:#fee2e2;
-
   border-color:#ef4444;
-
   color:#991b1b;
 }
 
 .choice.showCorrect{
   background:#dcfce7;
-
   border-color:#22c55e;
 }
 
 .feedback{
   margin-top:18px;
-
   padding:16px;
-
   border-radius:16px;
 }
 
@@ -423,43 +303,31 @@ textarea{
 
 .feedbackTitle{
   font-size:22px;
-
   font-weight:850;
 }
 
 .divider{
   height:1px;
-
-  background:
-    var(--line);
-
-  margin:
-    16px 0;
+  background:var(--line);
+  margin:16px 0;
 }
 
 .audio-buttons{
   display:flex;
-
   gap:10px;
-
   flex-wrap:wrap;
-
   margin-top:12px;
 }
 
 #nextQuestion{
   width:100%;
-
   margin-top:16px;
 }
 
 @media(max-width:560px){
-
   .grid2{
-    grid-template-columns:
-      1fr;
+    grid-template-columns:1fr;
   }
-
 }
 
 </style>
@@ -468,49 +336,33 @@ textarea{
 <body>
 
 <header>
-  <h1>
-    My English Words
-  </h1>
+  <h1>My English Words</h1>
 </header>
 
 <main>
 
 <div class="tabs">
 
-  <button
-    class="tab active"
-    data-tab="words"
-  >
+  <button class="tab active" data-tab="words">
     単語帳
   </button>
 
-  <button
-    class="tab"
-    data-tab="add"
-  >
+  <button class="tab" data-tab="add">
     追加
   </button>
 
-  <button
-    class="tab"
-    data-tab="quiz"
-  >
+  <button class="tab" data-tab="quiz">
     テスト
   </button>
 
-  <button
-    class="tab"
-    data-tab="backup"
-  >
+  <button class="tab" data-tab="backup">
     バックアップ
   </button>
 
 </div>
 
 
-<!-- ====================
-     単語帳
-==================== -->
+<!-- 単語帳 -->
 
 <section id="wordsSection">
 
@@ -519,25 +371,19 @@ textarea{
     <div class="space">
 
       <div>
-
         <div class="section-title">
           登録単語
         </div>
 
         <div class="muted">
-          <span id="wordCount">
-            0
-          </span>
-          words
+          <span id="wordCount">0</span> words
         </div>
-
       </div>
 
       <select
         id="filterMode"
         style="width:auto"
       >
-
         <option value="all">
           すべて
         </option>
@@ -549,21 +395,41 @@ textarea{
         <option value="weak">
           苦手順
         </option>
-
       </select>
 
     </div>
 
+
+    <div class="searchBox">
+
+      <span class="searchIcon">
+        🔍
+      </span>
+
+      <input
+        id="searchInput"
+        type="search"
+        autocomplete="off"
+        placeholder="単語・意味・例文・メモを検索"
+      >
+
+    </div>
+
+    <div
+      class="muted"
+      id="searchResult"
+      style="margin-top:10px"
+    ></div>
+
   </div>
+
 
   <div id="wordList"></div>
 
 </section>
 
 
-<!-- ====================
-     追加
-==================== -->
+<!-- 追加 -->
 
 <section
   id="addSection"
@@ -677,9 +543,7 @@ textarea{
 </section>
 
 
-<!-- ====================
-     テスト
-==================== -->
+<!-- テスト -->
 
 <section
   id="quizSection"
@@ -749,10 +613,7 @@ textarea{
     <button
       class="primary"
       id="startQuiz"
-      style="
-        width:100%;
-        margin-top:18px;
-      "
+      style="width:100%;margin-top:18px"
     >
       テスト開始
     </button>
@@ -823,9 +684,7 @@ textarea{
 </section>
 
 
-<!-- ====================
-     バックアップ
-==================== -->
+<!-- バックアップ -->
 
 <section
   id="backupSection"
@@ -839,8 +698,7 @@ textarea{
     </div>
 
     <div class="muted">
-      Safariのデータ削除や
-      機種変更に備えて保存できます。
+      Safariのデータ削除や機種変更に備えて保存できます。
     </div>
 
 
@@ -873,10 +731,7 @@ textarea{
 
     <button
       id="importBtn"
-      style="
-        width:100%;
-        margin-top:12px;
-      "
+      style="width:100%;margin-top:12px"
     >
       選んだバックアップを復元
     </button>
@@ -894,10 +749,6 @@ textarea{
 
 "use strict";
 
-
-/* =========================
-   保存
-========================= */
 
 const STORAGE_KEY =
   "myEnglishWords_v2";
@@ -933,10 +784,9 @@ function loadWords(){
   try{
 
     const current =
-      localStorage
-        .getItem(
-          STORAGE_KEY
-        );
+      localStorage.getItem(
+        STORAGE_KEY
+      );
 
 
     if(current){
@@ -948,9 +798,7 @@ function loadWords(){
 
 
       if(
-        Array.isArray(
-          parsed
-        )
+        Array.isArray(parsed)
       ){
 
         return parsed;
@@ -960,17 +808,16 @@ function loadWords(){
     }
 
 
+
     for(
       const key
-      of
-      LEGACY_KEYS
+      of LEGACY_KEYS
     ){
 
       const old =
-        localStorage
-          .getItem(
-            key
-          );
+        localStorage.getItem(
+          key
+        );
 
 
       if(!old){
@@ -985,18 +832,15 @@ function loadWords(){
 
 
       if(
-        Array.isArray(
-          parsed
-        )
+        Array.isArray(parsed)
       ){
 
-        localStorage
-          .setItem(
-            STORAGE_KEY,
-            JSON.stringify(
-              parsed
-            )
-          );
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify(
+            parsed
+          )
+        );
 
 
         return parsed;
@@ -1024,13 +868,12 @@ function loadWords(){
 
 function saveWords(){
 
-  localStorage
-    .setItem(
-      STORAGE_KEY,
-      JSON.stringify(
-        words
-      )
-    );
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(
+      words
+    )
+  );
 
 
   renderWords();
@@ -1056,9 +899,7 @@ function uid(){
 
 
 
-/* =========================
-   音声
-========================= */
+/* 音声 */
 
 function speak(text){
 
@@ -1070,8 +911,7 @@ function speak(text){
   if(
     !(
       "speechSynthesis"
-      in
-      window
+      in window
     )
   ){
 
@@ -1084,8 +924,7 @@ function speak(text){
   }
 
 
-  speechSynthesis
-    .cancel();
+  speechSynthesis.cancel();
 
 
   const utterance =
@@ -1102,50 +941,15 @@ function speak(text){
     0.85;
 
 
-  const voices =
-    speechSynthesis
-      .getVoices();
-
-
-  const englishVoice =
-    voices.find(
-      voice =>
-        voice.lang
-        ===
-        "en-US"
-    )
-    ||
-    voices.find(
-      voice =>
-        voice.lang
-        &&
-        voice.lang
-          .startsWith(
-            "en"
-          )
-    );
-
-
-  if(englishVoice){
-
-    utterance.voice =
-      englishVoice;
-
-  }
-
-
-  speechSynthesis
-    .speak(
-      utterance
-    );
+  speechSynthesis.speak(
+    utterance
+  );
 
 }
 
 
 
-/* =========================
-   共通
-========================= */
+/* 共通 */
 
 function makeText(
   tag,
@@ -1153,26 +957,25 @@ function makeText(
   className = ""
 ){
 
-  const element =
-    document
-      .createElement(
-        tag
-      );
+  const el =
+    document.createElement(
+      tag
+    );
 
 
   if(className){
 
-    element.className =
+    el.className =
       className;
 
   }
 
 
-  element.textContent =
+  el.textContent =
     text || "";
 
 
-  return element;
+  return el;
 
 }
 
@@ -1181,52 +984,44 @@ function makeText(
 function switchTab(name){
 
   document
-    .querySelectorAll(
-      ".tab"
-    )
+    .querySelectorAll(".tab")
     .forEach(
       button => {
 
-        button
-          .classList
-          .toggle(
-            "active",
-            button.dataset.tab
-            ===
-            name
-          );
+        button.classList.toggle(
+          "active",
+          button.dataset.tab
+          ===
+          name
+        );
 
       }
     );
 
 
   $("wordsSection")
-    .classList
-    .toggle(
+    .classList.toggle(
       "hidden",
       name !== "words"
     );
 
 
   $("addSection")
-    .classList
-    .toggle(
+    .classList.toggle(
       "hidden",
       name !== "add"
     );
 
 
   $("quizSection")
-    .classList
-    .toggle(
+    .classList.toggle(
       "hidden",
       name !== "quiz"
     );
 
 
   $("backupSection")
-    .classList
-    .toggle(
+    .classList.toggle(
       "hidden",
       name !== "backup"
     );
@@ -1247,32 +1042,82 @@ function switchTab(name){
 
 
 document
-  .querySelectorAll(
-    ".tab"
-  )
+  .querySelectorAll(".tab")
   .forEach(
     button => {
 
-      button
-        .addEventListener(
-          "click",
-          () => {
-
-            switchTab(
-              button.dataset.tab
-            );
-
-          }
-        );
+      button.addEventListener(
+        "click",
+        () =>
+          switchTab(
+            button.dataset.tab
+          )
+      );
 
     }
   );
 
 
 
-/* =========================
+/* =====================
+   検索
+===================== */
+
+function normalizeSearchText(text){
+
+  return String(
+    text || ""
+  )
+  .toLowerCase()
+  .trim();
+
+}
+
+
+
+function matchesSearch(
+  wordData,
+  query
+){
+
+  if(!query){
+    return true;
+  }
+
+
+  const searchableText =
+    [
+      wordData.word,
+      wordData.meaning,
+      wordData.example,
+      wordData.translation,
+      wordData.usage,
+      wordData.memo
+    ]
+    .join(" ")
+    .toLowerCase();
+
+
+  return searchableText
+    .includes(
+      query
+    );
+
+}
+
+
+
+$("searchInput")
+  .addEventListener(
+    "input",
+    renderWords
+  );
+
+
+
+/* =====================
    単語帳
-========================= */
+===================== */
 
 function weakScore(word){
 
@@ -1305,6 +1150,13 @@ function renderWords(){
   const mode =
     $("filterMode")
       .value;
+
+
+  const query =
+    normalizeSearchText(
+      $("searchInput")
+        .value
+    );
 
 
   if(
@@ -1351,9 +1203,44 @@ function renderWords(){
   }
 
 
+
+  if(query){
+
+    list =
+      list.filter(
+        wordData =>
+          matchesSearch(
+            wordData,
+            query
+          )
+      );
+
+  }
+
+
+
   $("wordCount")
     .textContent =
     words.length;
+
+
+
+  if(query){
+
+    $("searchResult")
+      .textContent =
+      `${list.length}件見つかりました`;
+
+  }
+
+  else{
+
+    $("searchResult")
+      .textContent =
+      "";
+
+  }
+
 
 
   const container =
@@ -1364,18 +1251,22 @@ function renderWords(){
     "";
 
 
+
   if(
     !list.length
   ){
 
-    container
-      .appendChild(
-        makeText(
-          "div",
-          "まだ単語がありません。",
-          "empty"
-        )
-      );
+    container.appendChild(
+      makeText(
+        "div",
+        query
+        ?
+        "検索結果がありません。"
+        :
+        "まだ単語がありません。",
+        "empty"
+      )
+    );
 
 
     return;
@@ -1388,34 +1279,29 @@ function renderWords(){
     wordData => {
 
       const card =
-        document
-          .createElement(
-            "div"
-          );
+        document.createElement(
+          "div"
+        );
 
 
       card.className =
         "card";
 
 
-
       const top =
-        document
-          .createElement(
-            "div"
-          );
+        document.createElement(
+          "div"
+        );
 
 
       top.className =
         "space";
 
 
-
       const left =
-        document
-          .createElement(
-            "div"
-          );
+        document.createElement(
+          "div"
+        );
 
 
       left.appendChild(
@@ -1436,7 +1322,6 @@ function renderWords(){
       );
 
 
-
       const speaker =
         makeText(
           "button",
@@ -1444,14 +1329,13 @@ function renderWords(){
         );
 
 
-      speaker
-        .addEventListener(
-          "click",
-          () =>
-            speak(
-              wordData.word
-            )
-        );
+      speaker.addEventListener(
+        "click",
+        () =>
+          speak(
+            wordData.word
+          )
+      );
 
 
       top.append(
@@ -1471,25 +1355,21 @@ function renderWords(){
       ){
 
         const exampleBox =
-          document
-            .createElement(
-              "div"
-            );
+          document.createElement(
+            "div"
+          );
 
 
-        exampleBox
-          .style
-          .marginTop =
+        exampleBox.style.marginTop =
           "18px";
 
 
-        exampleBox
-          .appendChild(
-            makeText(
-              "b",
-              "例文"
-            )
-          );
+        exampleBox.appendChild(
+          makeText(
+            "b",
+            "例文"
+          )
+        );
 
 
         const example =
@@ -1500,16 +1380,13 @@ function renderWords(){
           );
 
 
-        example
-          .style
-          .marginTop =
+        example.style.marginTop =
           "6px";
 
 
-        exampleBox
-          .appendChild(
-            example
-          );
+        exampleBox.appendChild(
+          example
+        );
 
 
         const exampleSpeaker =
@@ -1519,26 +1396,22 @@ function renderWords(){
           );
 
 
-        exampleSpeaker
-          .style
-          .marginTop =
+        exampleSpeaker.style.marginTop =
           "10px";
 
 
-        exampleSpeaker
-          .addEventListener(
-            "click",
-            () =>
-              speak(
-                wordData.example
-              )
-          );
+        exampleSpeaker.addEventListener(
+          "click",
+          () =>
+            speak(
+              wordData.example
+            )
+        );
 
 
-        exampleBox
-          .appendChild(
-            exampleSpeaker
-          );
+        exampleBox.appendChild(
+          exampleSpeaker
+        );
 
 
         card.appendChild(
@@ -1561,9 +1434,7 @@ function renderWords(){
           );
 
 
-        translation
-          .style
-          .marginTop =
+        translation.style.marginTop =
           "8px";
 
 
@@ -1580,26 +1451,22 @@ function renderWords(){
       ){
 
         const usageBox =
-          document
-            .createElement(
-              "div"
-            );
+          document.createElement(
+            "div"
+          );
 
 
-        usageBox
-          .style
-          .marginTop =
+        usageBox.style.marginTop =
           "16px";
 
 
-        usageBox
-          .appendChild(
-            makeText(
-              "span",
-              "使い方",
-              "pill"
-            )
-          );
+        usageBox.appendChild(
+          makeText(
+            "span",
+            "使い方",
+            "pill"
+          )
+        );
 
 
         const usage =
@@ -1614,10 +1481,9 @@ function renderWords(){
           "8px";
 
 
-        usageBox
-          .appendChild(
-            usage
-          );
+        usageBox.appendChild(
+          usage
+        );
 
 
         card.appendChild(
@@ -1633,26 +1499,22 @@ function renderWords(){
       ){
 
         const memoBox =
-          document
-            .createElement(
-              "div"
-            );
+          document.createElement(
+            "div"
+          );
 
 
-        memoBox
-          .style
-          .marginTop =
+        memoBox.style.marginTop =
           "14px";
 
 
-        memoBox
-          .appendChild(
-            makeText(
-              "span",
-              "メモ",
-              "pill"
-            )
-          );
+        memoBox.appendChild(
+          makeText(
+            "span",
+            "メモ",
+            "pill"
+          )
+        );
 
 
         const memo =
@@ -1663,16 +1525,13 @@ function renderWords(){
           );
 
 
-        memo
-          .style
-          .marginTop =
+        memo.style.marginTop =
           "8px";
 
 
-        memoBox
-          .appendChild(
-            memo
-          );
+        memoBox.appendChild(
+          memo
+        );
 
 
         card.appendChild(
@@ -1700,10 +1559,9 @@ function renderWords(){
 
 
       const stats =
-        document
-          .createElement(
-            "div"
-          );
+        document.createElement(
+          "div"
+        );
 
 
       stats.className =
@@ -1728,10 +1586,9 @@ function renderWords(){
         ([label,value]) => {
 
           const stat =
-            document
-              .createElement(
-                "div"
-              );
+            document.createElement(
+              "div"
+            );
 
 
           stat.className =
@@ -1755,10 +1612,9 @@ function renderWords(){
           );
 
 
-          stats
-            .appendChild(
-              stat
-            );
+          stats.appendChild(
+            stat
+          );
 
         }
       );
@@ -1771,10 +1627,9 @@ function renderWords(){
 
 
       const actions =
-        document
-          .createElement(
-            "div"
-          );
+        document.createElement(
+          "div"
+        );
 
 
       actions.className =
@@ -1793,14 +1648,13 @@ function renderWords(){
         );
 
 
-      edit
-        .addEventListener(
-          "click",
-          () =>
-            editWord(
-              wordData.id
-            )
-        );
+      edit.addEventListener(
+        "click",
+        () =>
+          editWord(
+            wordData.id
+          )
+      );
 
 
 
@@ -1812,14 +1666,13 @@ function renderWords(){
         );
 
 
-      del
-        .addEventListener(
-          "click",
-          () =>
-            deleteWord(
-              wordData.id
-            )
-        );
+      del.addEventListener(
+        "click",
+        () =>
+          deleteWord(
+            wordData.id
+          )
+      );
 
 
 
@@ -1853,9 +1706,9 @@ $("filterMode")
 
 
 
-/* =========================
+/* =====================
    追加 / 編集
-========================= */
+===================== */
 
 function clearForm(){
 
@@ -1869,12 +1722,8 @@ function clearForm(){
     "memo"
   ]
   .forEach(
-    id => {
-
-      $(id).value =
-        "";
-
-    }
+    id =>
+      $(id).value = ""
   );
 
 
@@ -1968,13 +1817,12 @@ $("saveBtn")
       if(id){
 
         const index =
-          words
-            .findIndex(
-              item =>
-                item.id
-                ===
-                id
-            );
+          words.findIndex(
+            item =>
+              item.id
+              ===
+              id
+          );
 
 
         if(
@@ -2016,9 +1864,7 @@ $("saveBtn")
 
       saveWords();
 
-
       clearForm();
-
 
       switchTab(
         "words"
@@ -2042,7 +1888,6 @@ $("cancelEdit")
 
       clearForm();
 
-
       switchTab(
         "words"
       );
@@ -2063,12 +1908,9 @@ function editWord(id){
     );
 
 
-  if(
-    !wordData
-  ){
+  if(!wordData){
     return;
   }
-
 
 
   $("editId").value =
@@ -2109,7 +1951,6 @@ function editWord(id){
     wordData.memo
     ||
     "";
-
 
 
   $("formTitle")
@@ -2164,9 +2005,9 @@ function deleteWord(id){
 
 
 
-/* =========================
-   3択テスト
-========================= */
+/* =====================
+   テスト
+===================== */
 
 function shuffle(array){
 
@@ -2212,7 +2053,8 @@ function shuffle(array){
 
 function weightedWeakPool(source){
 
-  const result = [];
+  const result =
+    [];
 
 
   source.forEach(
@@ -2249,13 +2091,11 @@ function weightedWeakPool(source){
 
       for(
         let i = 0;
-
         i <
         Math.min(
           weight,
           5
         );
-
         i++
       ){
 
@@ -2276,18 +2116,6 @@ function weightedWeakPool(source){
 }
 
 
-
-/*
- 英語→日本語
- → 日本語の意味を選ぶ
-
- 日本語→英語
- → 英単語を選ぶ
-
- 音声→日本語
- → 英語音声を聞いて
-   日本語の意味を選ぶ
-*/
 
 function getChoiceText(
   wordData,
@@ -2335,20 +2163,17 @@ function getThreeChoices(
     );
 
 
-  const choices =
+  return shuffle(
     [
       correctWord,
       ...randomOthers
-    ];
-
-
-  return shuffle(
-    choices
+    ]
   )
   .map(
     word => ({
 
-      id:word.id,
+      id:
+        word.id,
 
       text:
         getChoiceText(
@@ -2503,10 +2328,8 @@ function showQuestion(){
   }
 
 
-
   quizAnswered =
     false;
-
 
 
   const current =
@@ -2524,7 +2347,6 @@ function showQuestion(){
   $("quizProgress")
     .textContent =
     `${quizIndex + 1} / ${quizItems.length}`;
-
 
 
   $("choices")
@@ -2570,7 +2392,6 @@ function showQuestion(){
   }
 
 
-
   else if(
     mode
     ===
@@ -2589,7 +2410,6 @@ function showQuestion(){
       );
 
   }
-
 
 
   else{
@@ -2641,15 +2461,14 @@ function showQuestion(){
         choice.id;
 
 
-      button
-        .addEventListener(
-          "click",
-          () =>
-            answerQuestion(
-              choice.id,
-              button
-            )
-        );
+      button.addEventListener(
+        "click",
+        () =>
+          answerQuestion(
+            choice.id,
+            button
+          )
+      );
 
 
       $("choices")
@@ -2704,12 +2523,10 @@ function answerQuestion(
     true;
 
 
-
   const current =
     quizItems[
       quizIndex
     ];
-
 
 
   const isCorrect =
@@ -2797,26 +2614,18 @@ function answerQuestion(
 
 
 
-  current.updatedAt =
-    Date.now();
-
-
-
-  localStorage
-    .setItem(
-      STORAGE_KEY,
-      JSON.stringify(
-        words
-      )
-    );
-
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(
+      words
+    )
+  );
 
 
   showFeedback(
     current,
     isCorrect
   );
-
 
 
   $("nextQuestion")
@@ -2829,9 +2638,7 @@ function answerQuestion(
 
 
 
-/* =========================
-   解答後の説明
-========================= */
+/* 解説 */
 
 function showFeedback(
   wordData,
@@ -2859,7 +2666,7 @@ function showFeedback(
 
 
 
-  const title =
+  box.appendChild(
     makeText(
       "div",
       isCorrect
@@ -2868,20 +2675,15 @@ function showFeedback(
       :
       "✕ 不正解",
       "feedbackTitle"
-    );
-
-
-  box.appendChild(
-    title
+    )
   );
 
 
 
   const divider =
-    document
-      .createElement(
-        "div"
-      );
+    document.createElement(
+      "div"
+    );
 
 
   divider.className =
@@ -2893,8 +2695,6 @@ function showFeedback(
   );
 
 
-
-  /* 単語 */
 
   box.appendChild(
     makeText(
@@ -2915,24 +2715,7 @@ function showFeedback(
 
 
 
-  /*
-   正解画面でも
-   単語音声を再生
-  */
-
-  const audioButtons =
-    document
-      .createElement(
-        "div"
-      );
-
-
-  audioButtons.className =
-    "audio-buttons";
-
-
-
-  const wordAudioButton =
+  const wordAudio =
     makeText(
       "button",
       "🔊 単語を再生",
@@ -2940,36 +2723,30 @@ function showFeedback(
     );
 
 
-  wordAudioButton
-    .addEventListener(
-      "click",
-      () =>
-        speak(
-          wordData.word
-        )
-    );
+  wordAudio.style.marginTop =
+    "12px";
 
 
-  audioButtons
-    .appendChild(
-      wordAudioButton
-    );
-
-
-
-  box.appendChild(
-    audioButtons
+  wordAudio.addEventListener(
+    "click",
+    () =>
+      speak(
+        wordData.word
+      )
   );
 
 
+  box.appendChild(
+    wordAudio
+  );
 
-  /* 例文 */
+
 
   if(
     wordData.example
   ){
 
-    const exampleLabel =
+    const label =
       makeText(
         "div",
         "例文",
@@ -2977,22 +2754,17 @@ function showFeedback(
       );
 
 
-    exampleLabel
-      .style
-      .fontWeight =
+    label.style.fontWeight =
       "800";
 
 
-    exampleLabel
-      .style
-      .marginTop =
+    label.style.marginTop =
       "18px";
 
 
     box.appendChild(
-      exampleLabel
+      label
     );
-
 
 
     box.appendChild(
@@ -3005,43 +2777,33 @@ function showFeedback(
 
 
 
-    /*
-     正解画面でも
-     例文音声を再生
-    */
-
-    const exampleAudioButton =
+    const exampleAudio =
       makeText(
         "button",
         "🔊 例文を再生"
       );
 
 
-    exampleAudioButton
-      .style
-      .marginTop =
+    exampleAudio.style.marginTop =
       "10px";
 
 
-    exampleAudioButton
-      .addEventListener(
-        "click",
-        () =>
-          speak(
-            wordData.example
-          )
-      );
+    exampleAudio.addEventListener(
+      "click",
+      () =>
+        speak(
+          wordData.example
+        )
+    );
 
 
     box.appendChild(
-      exampleAudioButton
+      exampleAudio
     );
 
   }
 
 
-
-  /* 例文日本語 */
 
   if(
     wordData.translation
@@ -3055,9 +2817,7 @@ function showFeedback(
       );
 
 
-    translation
-      .style
-      .marginTop =
+    translation.style.marginTop =
       "8px";
 
 
@@ -3068,8 +2828,6 @@ function showFeedback(
   }
 
 
-
-  /* 使い方 */
 
   if(
     wordData.usage
@@ -3085,9 +2843,7 @@ function showFeedback(
       );
 
 
-    usage
-      .style
-      .marginTop =
+    usage.style.marginTop =
       "16px";
 
 
@@ -3098,8 +2854,6 @@ function showFeedback(
   }
 
 
-
-  /* メモ */
 
   if(
     wordData.memo
@@ -3115,9 +2869,7 @@ function showFeedback(
       );
 
 
-    memo
-      .style
-      .marginTop =
+    memo.style.marginTop =
       "12px";
 
 
@@ -3128,12 +2880,9 @@ function showFeedback(
   }
 
 
-
-  box
-    .classList
-    .remove(
-      "hidden"
-    );
+  box.classList.remove(
+    "hidden"
+  );
 
 }
 
@@ -3146,9 +2895,7 @@ $("nextQuestion")
 
       quizIndex++;
 
-
       showQuestion();
-
 
       window.scrollTo({
         top:0,
@@ -3177,12 +2924,9 @@ function showQuizResult(){
     "";
 
 
-  result
-    .classList
-    .remove(
-      "hidden"
-    );
-
+  result.classList.remove(
+    "hidden"
+  );
 
 
   result.appendChild(
@@ -3194,7 +2938,6 @@ function showQuizResult(){
   );
 
 
-
   result.appendChild(
     makeText(
       "div",
@@ -3202,7 +2945,6 @@ function showQuizResult(){
       "quizPrompt"
     )
   );
-
 
 
   const rate =
@@ -3213,7 +2955,6 @@ function showQuizResult(){
       *
       100
     );
-
 
 
   result.appendChild(
@@ -3231,9 +2972,7 @@ function showQuizResult(){
 
 
 
-/* =========================
-   バックアップ
-========================= */
+/* バックアップ */
 
 $("exportBtn")
   .addEventListener(
@@ -3245,7 +2984,7 @@ $("exportBtn")
         app:
           "My English Words",
 
-        version:4,
+        version:5,
 
         exportedAt:
           new Date()
@@ -3254,7 +2993,6 @@ $("exportBtn")
         words
 
       };
-
 
 
       const blob =
@@ -3273,40 +3011,30 @@ $("exportBtn")
         );
 
 
-
       const url =
         URL.createObjectURL(
           blob
         );
 
 
-
       const link =
-        document
-          .createElement(
-            "a"
-          );
-
+        document.createElement(
+          "a"
+        );
 
 
       const date =
         new Date()
           .toISOString()
-          .slice(
-            0,
-            10
-          );
-
+          .slice(0,10);
 
 
       link.href =
         url;
 
 
-
       link.download =
         `english-words-backup-${date}.json`;
-
 
 
       document.body
@@ -3315,20 +3043,16 @@ $("exportBtn")
         );
 
 
-
       link.click();
-
 
       link.remove();
 
 
-
       setTimeout(
         () =>
-          URL
-            .revokeObjectURL(
-              url
-            ),
+          URL.revokeObjectURL(
+            url
+          ),
         1000
       );
 
@@ -3347,7 +3071,6 @@ $("importBtn")
           .files?.[0];
 
 
-
       if(!file){
 
         alert(
@@ -3359,19 +3082,16 @@ $("importBtn")
       }
 
 
-
       try{
 
         const text =
           await file.text();
 
 
-
         const parsed =
           JSON.parse(
             text
           );
-
 
 
         const incoming =
@@ -3382,7 +3102,6 @@ $("importBtn")
           parsed
           :
           parsed.words;
-
 
 
         if(
@@ -3415,7 +3134,6 @@ $("importBtn")
             );
 
 
-
           const normalized =
             incoming.map(
               word => ({
@@ -3438,14 +3156,12 @@ $("importBtn")
             );
 
 
-
           words = [
             ...words,
             ...normalized
           ];
 
         }
-
 
 
         else{
@@ -3456,11 +3172,9 @@ $("importBtn")
             );
 
 
-
           if(!sure){
             return;
           }
-
 
 
           words =
@@ -3484,10 +3198,9 @@ $("importBtn")
         saveWords();
 
 
-
-        $("importFile").value =
+        $("importFile")
+          .value =
           "";
-
 
 
         alert(
@@ -3495,13 +3208,11 @@ $("importBtn")
         );
 
 
-
         switchTab(
           "words"
         );
 
       }
-
 
 
       catch(error){
@@ -3519,7 +3230,6 @@ $("importBtn")
 
     }
   );
-
 
 
 renderWords();
