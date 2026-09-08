@@ -8,138 +8,282 @@ export default {
 
     if (request.method === "OPTIONS") {
       return new Response(null, {
+        status: 204,
         headers: corsHeaders,
       });
     }
 
     if (request.method !== "POST") {
-      return new Response(
-        JSON.stringify({
-          error: "POST only",
-        }),
+      return jsonResponse(
         {
-          status: 405,
-          headers: {
-            ...corsHeaders,
-            "Content-Type": "application/json",
-          },
-        }
+          error: "POST only",
+        },
+        405,
+        corsHeaders
       );
     }
 
     try {
       if (!env.GEMINI_API_KEY) {
-        return new Response(
-          JSON.stringify({
-            error: "GEMINI_API_KEY が設定されていません",
-          }),
+        return jsonResponse(
           {
-            status: 500,
-            headers: {
-              ...corsHeaders,
-              "Content-Type": "application/json",
-            },
-          }
+            error: "GEMINI_API_KEY が設定されていません",
+          },
+          500,
+          corsHeaders
         );
       }
 
-      const body = await request.json();
+      let body;
 
-      const imageBase64 = body.image;
-      const mimeType = body.mimeType || "image/jpeg";
-
-      if (!imageBase64) {
-        return new Response(
-          JSON.stringify({
-            error: "画像がありません",
-          }),
+      try {
+        body = await request.json();
+      } catch {
+        return jsonResponse(
           {
-            status: 400,
-            headers: {
-              ...corsHeaders,
-              "Content-Type": "application/json",
-            },
-          }
+            error: "リクエストのJSONが正しくありません",
+          },
+          400,
+          corsHeaders
+        );
+      }
+
+      const imageBase64 = body?.image;
+      const mimeType = body?.mimeType || "image/jpeg";
+
+      if (!imageBase64 || typeof imageBase64 !== "string") {
+        return jsonResponse(
+          {
+            error: "画像がありません",
+          },
+          400,
+          corsHeaders
         );
       }
 
       const prompt = `
 あなたは日本人英語学習者向けの英単語帳作成AIです。
 
-添付画像を読み取り、
-画像内で「学習対象になっている英単語・英語フレーズ」をすべて抽出してください。
+添付された英語教材・単語帳の写真を読み取り、
+写真内で学習対象になっている英単語・英語フレーズを抽出してください。
 
-画像に複数の対象単語がある場合は、
-すべてまとめて処理してください。
+写真に複数の対象単語がある場合は、
+対象になっているものをすべて処理してください。
 
-重要:
-写真に書かれている単語と、
-その単語に対応する写真内の例文を正確に読み取ってください。
+====================
+最重要ルール
+====================
 
-各単語について、以下の6項目をアプリに登録できるように作成してください。
+写真に書かれている
+
+・英単語 / 英語フレーズ
+・その単語に対応する例文
+・写真内の情報
+
+を正確に読み取ってください。
+
+写真に書かれていない単語を、
+学習対象として勝手に追加してはいけません。
+
+読みにくい文字を無理に推測して、
+存在しない単語を作らないでください。
+
+同じ単語が複数回見えても、
+基本的には1つにまとめてください。
+
+====================
+出力する6項目
+====================
+
+各単語について必ず以下の6項目を作成してください。
 
 1. word
-アプリの「英単語・フレーズ」に入れる内容。
+
+アプリの
+「英単語・フレーズ」
+に入れる内容です。
 
 写真に載っている英単語または英語フレーズを入れてください。
 
+余計な説明や日本語は入れないでください。
+
+例：
+
+ensure
+
+register
+
+reply
+
+remove
+
+discrimination against minorities
+
+
 2. example
-アプリの「例文」に入れる内容。
 
-写真にその単語の例文が載っている場合、
-写真に書かれている例文をできるだけそのまま正確に入れてください。
+アプリの
+「例文」
+に入れる内容です。
 
-写真に例文がない場合は空文字 "" にしてください。
+写真にその単語の例文・使用例が載っている場合は、
+写真の英文をできるだけ正確にそのまま入れてください。
 
-重要:
-example欄にはAIが新しく作った例文を入れないでください。
-必ず写真に載っている例文だけです。
+重要：
+
+example欄ではAIが新しく例文を作ってはいけません。
+
+必ず写真に載っている英文だけを使用してください。
+
+写真に対応する例文がない場合は、
+
+""
+
+にしてください。
+
 
 3. meaning
-アプリの「意味」に入れる内容。
 
-その英単語・フレーズ自体の主要な日本語の意味を、
-簡潔で分かりやすく入れてください。
+アプリの
+「意味」
+に入れる内容です。
 
-これは例文の日本語訳ではありません。
+ここには
+英単語・フレーズそのものの日本語の意味
+を入れてください。
+
+例文全体の翻訳ではありません。
+
+日本人英語学習者が覚えやすい、
+簡潔で自然な日本語にしてください。
+
+複数の代表的な意味がある場合は、
+重要なものを簡潔にまとめて構いません。
+
+例：
+
+register
+→ 登録する
+
+reply
+→ 返事をする、返信する
+
+remove
+→ 取り除く、外す
+
 
 4. translation
-アプリの「例文の日本語訳」に入れる内容。
 
-exampleに入れた写真の例文を、
-自然な日本語に訳してください。
+アプリの
+「例文の日本語訳」
+に入れる内容です。
 
-exampleが空文字の場合、
-translationも空文字 "" にしてください。
+exampleに入れた
+写真内の英文を自然な日本語に訳してください。
+
+exampleが空文字の場合は、
+translationも必ず
+
+""
+
+にしてください。
+
+直訳しすぎず、
+実際に日本語として自然な表現にしてください。
+
 
 5. partOfSpeech
-アプリの「使い方メモ」に入れる内容。
 
-品詞だけを簡潔に入れてください。
+アプリの
+「使い方メモ」
+に入れる内容です。
 
-例:
+ここには品詞だけを簡潔に入れてください。
+
+説明文は入れないでください。
+
+基本的に英語表記を使用してください。
+
+例：
+
 noun
+
 verb
+
 adjective
+
 adverb
+
 noun / verb
+
 phrase
+
 phrasal verb
 
-必要に応じて複数の品詞を入れて構いません。
+preposition
+
+conjunction
+
+pronoun
+
+必要な場合だけ複数の品詞を書いて構いません。
+
 
 6. memo
-アプリの「自由メモ」に入れる内容。
+
+アプリの
+「自由メモ」
+に入れる内容です。
 
 ここには、
-その単語を勉強するための詳しい説明を
-日本語で作成してください。
+その単語を実際に使えるようになるための
+詳しい学習説明を日本語で作成してください。
 
-必ず以下のような形式を基本にしてください。
+単なる辞書の意味だけではなく、
 
-例:
+・ニュアンス
+・使う場面
+・よく使う形
+・自然な組み合わせ
+・似た単語との違い
+・追加例文
+
+まで分かる内容にしてください。
+
+ただし、
+必要以上に長すぎる説明にはしないでください。
+
+====================
+memoの基本構成
+====================
+
+最初に、
+その単語の意味・ニュアンスを
+1〜3文程度で日本語で説明してください。
+
+例：
 
 ensure は「ある状態や結果が確実になるようにする」という意味です。
+ただ確認するだけではなく、必要な行動をして結果を確実にするニュアンスがあります。
+
+
+次に必ず、
+
+よく使う形：
+
+という見出しを入れてください。
+
+その下に、
+よく使う語句・前置詞・構文・コロケーションを
+複数紹介してください。
+
+各項目は必ず
+
+* 
+
+から始めてください。
+
+例：
 
 よく使う形：
 
@@ -148,18 +292,72 @@ ensure は「ある状態や結果が確実になるようにする」という�
 * ensure success = 成功を確実にする
 * ensure that ～ = ～であることを確実にする
 
+
+====================
+追加例文
+====================
+
+AIが考えた自然な追加例文を
+必ず2つ作ってください。
+
+写真のexampleとは違う英文にしてください。
+
+日常会話や実際の生活で使える自然な英文を優先してください。
+
+見出しは必ず
+
+追加例文①
+
+追加例文②
+
+にしてください。
+
+形式：
+
+追加例文①
+英文
+→ 日本語訳
+
+追加例文②
+英文
+→ 日本語訳
+
+例：
+
 追加例文①
 Please ensure that all doors are locked.
 → すべてのドアに鍵がかかっていることを確認してください。
 
 追加例文②
 Regular checks help ensure safety.
-→ 定期的な点検は安全の確保に役立つ。
+→ 定期的な点検は安全の確保に役立ちます。
+
+
+====================
+似た単語との違い
+====================
+
+その単語に、
+日本人学習者が混同しやすい似た英単語がある場合は、
+違いも説明してください。
+
+見出しは
+
+〇〇との違い
+
+という形式にしてください。
+
+各違いは
+* 
+を使って簡潔に説明してください。
+
+例：
 
 make sureとの違い
 
-* make sure = 日常的に「ちゃんと確認する」
-* ensure = よりフォーマルに「確実な状態にする」
+* make sure = 日常会話で「ちゃんと確認する」
+* ensure = 何かをして結果や状態を確実にする。ややフォーマル
+
 
 assureとの違い
 
@@ -170,44 +368,57 @@ I assure you that it’s safe.
 → 安全だとあなたに保証します。
 
 
-memoの詳しいルール:
+似た単語が特にない場合は、
+無理に作る必要はありません。
 
-- 最初に、その単語の意味・ニュアンスを日本語で説明してください。
-- 日本人英語学習者が理解しやすい説明にしてください。
-- 必要なら「どんな場面で使うか」も説明してください。
-- 「よく使う形：」という項目を入れてください。
-- よく使われる語句・前置詞・構文・コロケーションを複数紹介してください。
-- 各項目は "* " から始めてください。
-- AIが考えた自然な追加例文を必ず2つ作ってください。
-- 見出しは必ず「追加例文①」「追加例文②」にしてください。
-- 追加例文の次の行に必ず「→ 日本語訳」を入れてください。
-- 追加例文は写真のexampleとは別の文章にしてください。
-- 日常で実際に使える自然な英文を優先してください。
-- 混同しやすい英単語がある場合は、その違いを説明してください。
-- 見出しは「〇〇との違い」の形にしてください。
-- 違いの説明は "* " を使って分かりやすくしてください。
-- 必要なら、混同語の追加例文と日本語訳も入れてください。
-- 似た単語が複数ある場合は複数説明して構いません。
-- 単なる辞書的な意味だけではなく、実際の使い分けが分かる説明にしてください。
-- 不自然な日本語や直訳を避けてください。
-- 説明は長すぎず、しかし学習に必要な情報は省略しないでください。
+====================
+写真の例文について
+====================
 
-写真読み取りルール:
+非常に重要です。
 
-- 写真に複数単語がある場合、すべて処理してください。
-- 写真に載っていない単語を勝手に対象単語として追加しないでください。
-- 写真の例文と単語の対応関係を間違えないでください。
-- 写真の文字が読みづらい場合でも、推測しすぎないでください。
-- 判別できない単語は無理に作らないでください。
-- 日本語訳は自然な日本語を優先してください。
+写真に載っている例文は
 
-出力ルール:
+example
+
+にだけ入れてください。
+
+memo内の追加例文①・②は
+AIが新しく考えた別の文章にしてください。
+
+同じ英文を繰り返さないでください。
+
+====================
+写真読み取りルール
+====================
+
+・写真に複数単語があればすべて処理する
+
+・写真に載っていない単語を対象単語として追加しない
+
+・単語と例文の対応関係を間違えない
+
+・読みにくい文字を無理に推測しない
+
+・判別できない単語は無理に出力しない
+
+・日本語訳は自然な日本語にする
+
+・写真内に単語と例文だけあり、意味が見えにくい場合でも、wordが明確ならmeaningはAIが補ってよい
+
+・写真内の日本語訳が見える場合も参考にしてよい
+
+====================
+JSON出力ルール
+====================
 
 必ずJSONだけを返してください。
-JSONの前後に説明を書かないでください。
-Markdownのコードブロックも付けないでください。
 
-必ずこの形式で返してください:
+JSONの前後に説明文を書かないでください。
+
+Markdownコードブロックを付けないでください。
+
+必ず次の形式にしてください。
 
 {
   "words": [
@@ -248,6 +459,7 @@ Markdownのコードブロックも付けないでください。
                 ],
               },
             ],
+
             generationConfig: {
               temperature: 0.2,
               responseMimeType: "application/json",
@@ -256,135 +468,160 @@ Markdownのコードブロックも付けないでください。
         }
       );
 
-      const geminiData = await geminiResponse.json();
+      const responseText = await geminiResponse.text();
+
+      let geminiData;
+
+      try {
+        geminiData = JSON.parse(responseText);
+      } catch {
+        geminiData = null;
+      }
 
       if (!geminiResponse.ok) {
-        return new Response(
-          JSON.stringify({
-            error: "Gemini API error",
-            details: geminiData,
-          }),
+        return jsonResponse(
           {
+            error: "Gemini API error",
             status: geminiResponse.status,
-            headers: {
-              ...corsHeaders,
-              "Content-Type": "application/json",
-            },
-          }
+            details: geminiData || responseText,
+          },
+          geminiResponse.status,
+          corsHeaders
         );
       }
 
       const text =
-        geminiData?.candidates?.[0]?.content?.parts?.[0]?.text;
+        geminiData?.candidates?.[0]?.content?.parts
+          ?.map((part) => part?.text || "")
+          .join("")
+          .trim() || "";
 
       if (!text) {
-        throw new Error(
-          "Geminiから回答を取得できませんでした"
+        return jsonResponse(
+          {
+            error: "Geminiから回答を取得できませんでした",
+            details: geminiData,
+          },
+          500,
+          corsHeaders
         );
       }
+
+      const cleanedText = text
+        .replace(/^```json\s*/i, "")
+        .replace(/^```\s*/i, "")
+        .replace(/\s*```$/i, "")
+        .trim();
 
       let parsed;
 
       try {
-        parsed = JSON.parse(text);
-      } catch (error) {
-        return new Response(
-          JSON.stringify({
-            error: "GeminiのJSONを読み取れませんでした",
-            raw: text,
-          }),
+        parsed = JSON.parse(cleanedText);
+      } catch {
+        return jsonResponse(
           {
-            status: 500,
-            headers: {
-              ...corsHeaders,
-              "Content-Type": "application/json",
-            },
-          }
+            error: "GeminiのJSONを読み取れませんでした",
+            raw: cleanedText,
+          },
+          500,
+          corsHeaders
         );
       }
 
-      if (!Array.isArray(parsed.words)) {
-        return new Response(
-          JSON.stringify({
+      if (!parsed || !Array.isArray(parsed.words)) {
+        return jsonResponse(
+          {
             error: "Geminiの回答形式が正しくありません",
             raw: parsed,
-          }),
-          {
-            status: 500,
-            headers: {
-              ...corsHeaders,
-              "Content-Type": "application/json",
-            },
-          }
+          },
+          500,
+          corsHeaders
         );
       }
 
       const cleanedWords = parsed.words
-        .map((item) => ({
-          word:
-            typeof item.word === "string"
-              ? item.word.trim()
-              : "",
+        .map((item) => {
+          const word = cleanString(item?.word);
+          const example = cleanString(item?.example);
+          const meaning = cleanString(item?.meaning);
+          const translation = cleanString(item?.translation);
+          const partOfSpeech = cleanString(item?.partOfSpeech);
+          const memo = cleanString(item?.memo);
 
-          example:
-            typeof item.example === "string"
-              ? item.example.trim()
-              : "",
+          return {
+            word,
+            example,
+            meaning,
+            translation: example ? translation : "",
+            partOfSpeech,
+            memo,
+          };
+        })
+        .filter((item) => item.word && item.meaning);
 
-          meaning:
-            typeof item.meaning === "string"
-              ? item.meaning.trim()
-              : "",
+      const uniqueWords = [];
+      const seen = new Set();
 
-          translation:
-            typeof item.translation === "string"
-              ? item.translation.trim()
-              : "",
+      for (const item of cleanedWords) {
+        const key = item.word.toLocaleLowerCase("en-US");
 
-          partOfSpeech:
-            typeof item.partOfSpeech === "string"
-              ? item.partOfSpeech.trim()
-              : "",
-
-          memo:
-            typeof item.memo === "string"
-              ? item.memo.trim()
-              : "",
-        }))
-        .filter(
-          (item) =>
-            item.word &&
-            item.meaning
-        );
-
-      return new Response(
-        JSON.stringify({
-          words: cleanedWords,
-        }),
-        {
-          status: 200,
-          headers: {
-            ...corsHeaders,
-            "Content-Type": "application/json",
-          },
+        if (seen.has(key)) {
+          continue;
         }
+
+        seen.add(key);
+        uniqueWords.push(item);
+      }
+
+      if (uniqueWords.length === 0) {
+        return jsonResponse(
+          {
+            error: "写真から登録できる英単語を見つけられませんでした",
+            words: [],
+          },
+          422,
+          corsHeaders
+        );
+      }
+
+      return jsonResponse(
+        {
+          words: uniqueWords,
+        },
+        200,
+        corsHeaders
       );
     } catch (error) {
       console.error(error);
 
-      return new Response(
-        JSON.stringify({
-          error: "処理に失敗しました",
-          details: String(error),
-        }),
+      return jsonResponse(
         {
-          status: 500,
-          headers: {
-            ...corsHeaders,
-            "Content-Type": "application/json",
-          },
-        }
+          error: "処理に失敗しました",
+          details:
+            error instanceof Error
+              ? error.message
+              : String(error),
+        },
+        500,
+        corsHeaders
       );
     }
   },
 };
+
+function cleanString(value) {
+  return typeof value === "string"
+    ? value.trim()
+    : "";
+}
+
+function jsonResponse(data, status, corsHeaders) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: {
+      ...corsHeaders,
+      "Content-Type": "application/json; charset=utf-8",
+      "Cache-Control": "no-store",
+    },
+  });
+}
